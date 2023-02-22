@@ -7,7 +7,6 @@ public class Main {
 	 * 
 	 * public void start(Stage primaryStage)
 	 * 
-	 * 
 	 */
 	
 	public static void main(String[] args) {
