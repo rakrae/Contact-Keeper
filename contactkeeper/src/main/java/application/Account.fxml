@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="460.0" prefWidth="424.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Account_controller">
+   <children>
+      <Pane prefHeight="460.0" prefWidth="424.0">
+         <children>
+            <ImageView fitHeight="466.0" fitWidth="430.0" layoutX="-1.0" layoutY="-1.0">
+               <image>
+                  <Image url="@../../../../Fotos/Download%20(2).jpeg" />
+               </image>
+            </ImageView>
+            <BorderPane prefHeight="460.0" prefWidth="424.0">
+               <top>
+                  <Label text="Account" textFill="WHITE" BorderPane.alignment="CENTER">
+                     <font>
+                        <Font name="Arial Bold" size="22.0" />
+                     </font>
+                     <BorderPane.margin>
+                        <Insets top="10.0" />
+                     </BorderPane.margin>
+                  </Label>
+               </top>
+               <left>
+                  <VBox prefHeight="424.0" prefWidth="171.0" spacing="15.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <Label fx:id="accountText" text="Account " textFill="WHITE">
+                           <font>
+                              <Font name="Arial Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <Button fx:id="contacts" mnemonicParsing="false" onAction="#handleContactsPressed" text="Contacts">
+                           <font>
+                              <Font name="Arial Bold" size="12.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="editAccount" mnemonicParsing="false" onAction="#handleEditAccountPressed" text="Edit account">
+                           <font>
+                              <Font name="Arial Bold" size="12.0" />
+                           </font>
+                        </Button>
+                     </children>
+                     <padding>
+                        <Insets top="50.0" />
+                     </padding>
+                     <BorderPane.margin>
+                        <Insets left="15.0" />
+                     </BorderPane.margin>
+                  </VBox>
+               </left>
+               <bottom>
+                  <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <Button fx:id="close" mnemonicParsing="false" onAction="#handleClosePressed" text="Close">
+                           <font>
+                              <Font name="Arial Bold" size="12.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="back" mnemonicParsing="false" onAction="#handleBackPressed" text="Back">
+                           <font>
+                              <Font name="Arial Bold" size="12.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="deleteAccount" mnemonicParsing="false" onAction="#handleDeleteAccountPressed" text="Delete account">
+                           <font>
+                              <Font name="Arial Bold" size="12.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="190.0" />
+                           </HBox.margin>
+                        </Button>
+                     </children>
+                     <BorderPane.margin>
+                        <Insets />
+                     </BorderPane.margin>
+                     <padding>
+                        <Insets left="10.0" top="70.0" />
+                     </padding>
+                  </HBox>
+               </bottom>
+            </BorderPane>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>
