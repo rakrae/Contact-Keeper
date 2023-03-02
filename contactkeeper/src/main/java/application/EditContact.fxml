@@ -13,14 +13,13 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="524.0" prefWidth="490.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/18" fx:controller="controller.EditContact_controller">
+<AnchorPane prefHeight="524.0" prefWidth="490.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.EditContact_controller">
    <children>
       <Pane prefHeight="524.0" prefWidth="490.0">
          <children>
-            <ImageView fitHeight="531.0" fitWidth="496.0" layoutX="-1.0" layoutY="-1.0">
+            <ImageView fitHeight="524.0" fitWidth="496.0">
                <image>
-                  <Image url="@../../../../Fotos/False%20Sunset%20Art%20Print%20by%20Andy%20Astbury.jpeg" />
+                  <Image url="@../../resources/Fotos/Cut.jpeg" />
                </image>
             </ImageView>
             <BorderPane prefHeight="524.0" prefWidth="490.0">
@@ -37,7 +36,6 @@
                <left>
                   <VBox prefHeight="428.0" prefWidth="186.0" spacing="11.4" BorderPane.alignment="CENTER">
                      <children>
-                        <Label text="Label" />
                         <Label text="First name:" textFill="WHITE">
                            <font>
                               <Font name="Arial Bold" size="18.0" />
@@ -80,7 +78,7 @@
                         </Label>
                      </children>
                      <BorderPane.margin>
-                        <Insets top="45.0" />
+                        <Insets top="70.0" />
                      </BorderPane.margin>
                      <padding>
                         <Insets left="30.0" />

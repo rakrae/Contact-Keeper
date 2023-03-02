@@ -14,14 +14,14 @@
 
 <AnchorPane prefHeight="474.0" prefWidth="467.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.NewAccount_controller">
    <children>
-      <Pane layoutX="3.0" prefHeight="474.0" prefWidth="461.0">
+      <Pane layoutX="4.0" prefHeight="474.0" prefWidth="460.0">
          <children>
-            <ImageView fitHeight="483.0" fitWidth="467.0" layoutX="-3.0" layoutY="-4.0">
+            <ImageView fitHeight="474.0" fitWidth="473.0" layoutX="-6.0">
                <image>
-                  <Image url="@../../../../Fotos/Collection%20Of%20Amazing%20Sunrays%20In%20The%20Forest%20In%20The%20Netherlands.png" />
+                  <Image url="@../../resources/Fotos/The%20Cave%20Of%20Three%20Bridges%20In%20Lebanon%20Turns%20Into%20A%20Waterfall%20When%20The%20Winter%20Snow%20Melts.jpeg" />
                </image>
             </ImageView>
-            <BorderPane prefHeight="474.0" prefWidth="461.0">
+            <BorderPane layoutX="1.0" prefHeight="465.0" prefWidth="460.0">
                <top>
                   <Label text="New account" textFill="WHITE" BorderPane.alignment="CENTER">
                      <font>
@@ -114,7 +114,7 @@
                   </VBox>
                </center>
                <bottom>
-                  <VBox prefHeight="233.0" prefWidth="470.0" spacing="10.0" BorderPane.alignment="CENTER">
+                  <VBox prefHeight="61.0" prefWidth="439.0" spacing="10.0" BorderPane.alignment="CENTER">
                      <children>
                         <Button fx:id="createNewAccount" mnemonicParsing="false" onAction="#handleCreateNewAccountPressed" text="Create new account">
                            <font>

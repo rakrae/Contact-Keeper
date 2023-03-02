@@ -12,14 +12,13 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="529.0" prefWidth="493.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/18" fx:controller="controller.Contact_controller">
+<AnchorPane prefHeight="529.0" prefWidth="493.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Contact_controller">
    <children>
       <Pane prefHeight="529.0" prefWidth="493.0">
          <children>
-            <ImageView fitHeight="536.0" fitWidth="500.0" layoutX="-2.0" layoutY="-2.0">
+            <ImageView fitHeight="529.0" fitWidth="493.0">
                <image>
-                  <Image url="@../../../../Fotos/Cut.jpeg" />
+                  <Image url="@../../resources/Fotos/A%20Guide%20to%20Colorado's%20Spectacular%20Wildflower%20Season.png" />
                </image>
             </ImageView>
             <BorderPane prefHeight="529.0" prefWidth="500.0">

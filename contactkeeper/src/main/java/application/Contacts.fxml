@@ -14,15 +14,16 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="436.0" prefWidth="471.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/18" fx:controller="controller.Contacts_controller">
+<AnchorPane prefHeight="436.0" prefWidth="471.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Contacts_controller">
    <children>
-      <Pane prefHeight="200.0" prefWidth="200.0" />
-      <ImageView fitHeight="442.0" fitWidth="477.0" layoutX="-1.0" layoutY="-3.0">
-         <image>
-            <Image url="@../../../../Fotos/Эстетичные%20обои.jpeg" />
-         </image>
-      </ImageView>
+      <Pane prefHeight="439.0" prefWidth="476.0">
+         <children>
+            <ImageView fitHeight="439.0" fitWidth="476.0">
+               <image>
+                  <Image url="@../../resources/Fotos/Download%20(2).jpeg" />
+               </image>
+            </ImageView>
+         </children></Pane>
       <BorderPane prefHeight="439.0" prefWidth="476.0">
          <top>
             <Label text="Contacts" textFill="WHITE" BorderPane.alignment="CENTER">
