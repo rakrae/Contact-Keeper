@@ -33,7 +33,7 @@ public class Contact {
 	private String instagram;
 	
 	@ManyToOne
-	@JoinColumn(name = "user_id")
+	@JoinColumn(name = "account")
 	private Account account;
 	
 	
