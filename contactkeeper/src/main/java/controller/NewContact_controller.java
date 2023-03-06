@@ -7,7 +7,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
-public class NewContact_controller {
+public class NewContact_controller extends CommonProprietiesController {
 
     @FXML
     private ResourceBundle resources;

@@ -8,7 +8,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
-public class Login_controller {
+public class Login_controller extends CommonProprietiesController {
 
 	@FXML
 	private ResourceBundle resources;
