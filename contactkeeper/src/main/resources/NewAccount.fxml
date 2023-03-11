@@ -16,9 +16,9 @@
    <children>
       <Pane layoutX="4.0" prefHeight="474.0" prefWidth="460.0">
          <children>
-            <ImageView fitHeight="474.0" fitWidth="473.0" layoutX="-6.0">
+            <ImageView fitHeight="474.0" fitWidth="478.0" layoutX="-11.0">
                <image>
-                  <Image url="@../../resources/Fotos/The%20Cave%20Of%20Three%20Bridges%20In%20Lebanon%20Turns%20Into%20A%20Waterfall%20When%20The%20Winter%20Snow%20Melts.jpeg" />
+                  <Image url="@Fotos/The%20Cave%20Of%20Three%20Bridges%20In%20Lebanon%20Turns%20Into%20A%20Waterfall%20When%20The%20Winter%20Snow%20Melts.jpeg" />
                </image>
             </ImageView>
             <BorderPane layoutX="1.0" prefHeight="465.0" prefWidth="460.0">

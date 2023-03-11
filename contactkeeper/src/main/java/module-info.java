@@ -1,4 +1,5 @@
 module cKmodule {
+	
 	requires javafx.controls;
 	requires javafx.graphics;
 	requires javafx.fxml;
@@ -10,5 +11,4 @@ module cKmodule {
 
 	opens model to eclipselink;
 	opens controller to javafx.fxml;
-	opens application to javafx.graphics, javafx.fxml;
 }

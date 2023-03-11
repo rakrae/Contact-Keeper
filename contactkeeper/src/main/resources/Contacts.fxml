@@ -20,7 +20,7 @@
          <children>
             <ImageView fitHeight="439.0" fitWidth="476.0">
                <image>
-                  <Image url="@../../resources/Fotos/Download%20(2).jpeg" />
+                  <Image url="@Fotos/False%20Sunset%20Art%20Print%20by%20Andy%20Astbury.jpeg" />
                </image>
             </ImageView>
          </children></Pane>

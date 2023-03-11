@@ -1,10 +1,5 @@
 package application;
 
-
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-
-import database.DatabaseCreator;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -18,10 +13,9 @@ public class Main extends Application {
 	public void start(Stage primaryStage) {
 		try {
 			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(getClass().getResource("Login.fxml"));
+			loader.setLocation(getClass().getResource("/Login.fxml"));
 			Parent root = loader.load();
 			Scene scene = new Scene(root);
-			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			primaryStage.setScene(scene);
 			primaryStage.show();
 

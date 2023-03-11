@@ -18,7 +18,7 @@
          <children>
             <ImageView fitHeight="460.0" fitWidth="424.0">
                <image>
-                  <Image url="@../../resources/Fotos/Collection%20Of%20Amazing%20Sunrays%20In%20The%20Forest%20In%20The%20Netherlands.png" />
+                  <Image url="@Fotos/Collection%20Of%20Amazing%20Sunrays%20In%20The%20Forest%20In%20The%20Netherlands.png" />
                </image>
             </ImageView>
             <BorderPane prefHeight="460.0" prefWidth="424.0">

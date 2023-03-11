@@ -38,6 +38,8 @@ public class LoginController extends CommonProprietiesController {
 
 	@FXML
 	void handleLoginPressed(ActionEvent event) {
+		
+		
 
 	}
 
