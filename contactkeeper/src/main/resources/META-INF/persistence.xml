@@ -9,8 +9,6 @@
       <property name="javax.persistence.jdbc.url" value="jdbc:derby:contactKeeper; create=true" /> <!-- Must change -->
       <property name="javax.persistence.jdbc.user" value="adi" />
       <property name="javax.persistence.jdbc.password" value="rakrae" />
-      <property name="jakarta.persistence.schema-generation.database.action" value="none"/> <!-- none - production  -->
-	  <property name="eclipselink.logging.level.sql" value="FINE" />
     </properties>
   </persistence-unit>
 </persistence>
