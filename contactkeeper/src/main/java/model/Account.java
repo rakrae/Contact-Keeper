@@ -1,5 +1,6 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -37,7 +38,9 @@ public class Account {
 	private int age;
 
 	@OneToMany(targetEntity = Contact.class, mappedBy = "account", cascade = CascadeType.ALL, orphanRemoval = true) // for one account to have many	// contacts
-	private List<Contact> contact;
+	private List<Contact> contacts = new ArrayList<>();
+
+	private Contact contact;
 
 	public Account() {
 		super();
@@ -53,7 +56,8 @@ public class Account {
 		this.lastName = lastName;
 		this.gender = gender;
 		this.age = age;
-		this.contact = (List<Contact>) contact;
+		this.contact = contact;
+
 	}
 
 	public long getId() {
@@ -114,11 +118,21 @@ public class Account {
 
 
 	public List<Contact> getContact() {
-		return contact;
+		return contacts;
 	}
 
 	public void setContact(List<Contact> contact) {
-		this.contact = contact;
+		this.contact = (Contact) contact;
+	}
+	
+	public void addContact(Contact contact) {
+		contacts.add(contact);
+	    contact.setAccount(this);
+	}
+
+	public void removeContact(Contact contact) {
+	    contacts.remove(contact);
+	    contact.setAccount(null);
 	}
 
 	@Override

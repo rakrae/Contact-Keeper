@@ -1,49 +1,20 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-
-	<!--NEW added -->
-	<parent>
-		<groupId>org.apache.derby</groupId>
-		<artifactId>derby-project</artifactId>
-		<version>10.16.1.1</version>
-	</parent>
-	<name>Apache Derby Database Engine and Embedded JDBC Driver</name>
-	<description>Contains the core Apache Derby database engine, which also includes the embedded JDBC driver.</description>
-	<url>http://db.apache.org/derby/</url>
-	
+	<groupId>at.wifiwien.java</groupId>
 	<artifactId>contactkeeper</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
+
+	<name>javadb-derby-embedded-basic</name>
+	<url>http://maven.apache.org</url>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<maven.compiler.source>17</maven.compiler.source>
-		<maven.compiler.target>17</maven.compiler.target>
 	</properties>
 
 	<build>
-
-		<resources>
-			<resource>
-				<directory>src/main/resources</directory>
-			</resource>
-		</resources>
-
 		<plugins>
-
-			<!-- For the database-->
-			<plugin>
-				<groupId>org.flywaydb</groupId>
-				<artifactId>flyway-maven-plugin</artifactId>
-				<version>8.5.5</version>
-				<configuration>
-					<url>jdbc:mysql://localhost:3306/contactKeeper</url>
-					<user>adi</user>
-					<password>rakrae</password>
-				</configuration>
-			</plugin>
-
-
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>exec-maven-plugin</artifactId>
@@ -54,34 +25,14 @@
 			</plugin>
 
 
-			<!--NEW added -->
 			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.8.1</version>
 				<configuration>
-					<mainClass>application.Main</mainClass>
-					<release>14</release>
+					<source>15</source>
+					<target>15</target>
 				</configuration>
 			</plugin>
-
-			<plugin>
-				<artifactId>maven-antrun-plugin</artifactId>
-				<executions>
-					<execution>
-						<phase>package</phase>
-						<configuration>
-							<target>
-								<copy file="${basedir}/../../jars/${sanity}/derby.jar" tofile="${basedir}/target/${project.build.finalName}.jar" overwrite="true" />
-							</target>
-						</configuration>
-						<goals>
-							<goal>run</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-
 
 		</plugins>
 
@@ -89,6 +40,14 @@
 
 
 	<dependencies>
+
+		<!-- https://mvnrepository.com/artifact/org.apache.derby/derby -->
+		<dependency>
+			<groupId>org.apache.derby</groupId>
+			<artifactId>derby</artifactId>
+			<version>10.16.1.1</version>
+			<scope>test</scope>
+		</dependency>
 
 		<!-- https://mvnrepository.com/artifact/org.testng/testng -->
 		<dependency>
@@ -142,11 +101,11 @@
 			<version>20-ea+11</version>
 		</dependency>
 
-		<!-- https://mvnrepository.com/artifact/javax.persistence/javax.persistence-api -->
+		<!-- https://mvnrepository.com/artifact/jakarta.persistence/jakarta.persistence-api -->
 		<dependency>
-			<groupId>javax.persistence</groupId>
-			<artifactId>javax.persistence-api</artifactId>
-			<version>2.2</version>
+			<groupId>jakarta.persistence</groupId>
+			<artifactId>jakarta.persistence-api</artifactId>
+			<version>3.1.0</version>
 		</dependency>
 
 
@@ -174,28 +133,6 @@
 			<version>6.0.17.Final</version>
 		</dependency>
 
-		<!-- https://mvnrepository.com/artifact/org.postgresql/postgresql -->
-		<dependency>
-			<groupId>org.postgresql</groupId>
-			<artifactId>postgresql</artifactId>
-			<version>42.5.4</version>
-		</dependency>
-
-		<!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
-		<dependency>
-			<groupId>org.seleniumhq.selenium</groupId>
-			<artifactId>selenium-java</artifactId>
-			<version>4.8.1</version>
-		</dependency>
-
-		<!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
-		<dependency>
-			<groupId>com.mysql</groupId>
-			<artifactId>mysql-connector-j</artifactId>
-			<version>8.0.32</version>
-		</dependency>
-
-
 		<!-- https://mvnrepository.com/artifact/org.danekja/jdk-serializable-functional -->
 		<dependency>
 			<groupId>org.danekja</groupId>
@@ -203,23 +140,28 @@
 			<version>1.9.0</version>
 		</dependency>
 
-		<!-- https://mvnrepository.com/artifact/org.apache.derby/derby -->
+		<!-- https://mvnrepository.com/artifact/org.eclipse.persistence/eclipselink -->
 		<dependency>
-			<groupId>org.apache.derby</groupId>
-			<artifactId>derby</artifactId>
-			<version>10.16.1.1</version>
-			<scope>test</scope>
+			<groupId>org.eclipse.persistence</groupId>
+			<artifactId>eclipselink</artifactId>
+			<version>4.0.1</version>
 		</dependency>
 
+		<!-- https://mvnrepository.com/artifact/org.apache.derby/derbyclient -->
 		<dependency>
 			<groupId>org.apache.derby</groupId>
-			<artifactId>derbyshared</artifactId>
+			<artifactId>derbyclient</artifactId>
 			<version>10.16.1.1</version>
-			<optional>false</optional>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-antrun-plugin -->
+		<dependency>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-antrun-plugin</artifactId>
+			<version>3.1.0</version>
 		</dependency>
 
 
 	</dependencies>
-
 
 </project>

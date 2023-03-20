@@ -1,12 +1,15 @@
 package controller;
 
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
+import model.Account;
 
 public class LoginController extends CommonProprietiesController {
 
@@ -38,8 +41,13 @@ public class LoginController extends CommonProprietiesController {
 
 	@FXML
 	void handleLoginPressed(ActionEvent event) {
-		
-		
+
+		openScene(PERSISTANCE_NAME_ACCOUNT);
+
+		Stage primaryStage = (Stage) accountTextField.getScene().getWindow();
+		primaryStage.close();
+
+//	List<Account> accounts = accountRepository.readAll();
 
 	}
 

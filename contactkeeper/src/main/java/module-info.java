@@ -1,5 +1,6 @@
 module cKmodule {
 	
+	
 	requires javafx.controls;
 	requires javafx.graphics;
 	requires javafx.fxml;
@@ -8,6 +9,9 @@ module cKmodule {
 	requires java.management;
 	requires java.xml;
 	requires jdk.jfr;
+	requires org.hibernate.orm.core;
+	requires java.base;
+	requires jdk.jpackage;
 
 	opens model to eclipselink;
 	opens controller to javafx.fxml;

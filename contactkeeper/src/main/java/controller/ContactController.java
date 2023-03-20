@@ -50,6 +50,7 @@ public class ContactController extends CommonProprietiesController {
 
 	}
 
+
 	@FXML
 	void handleEditContactPressed(ActionEvent event) {
 
