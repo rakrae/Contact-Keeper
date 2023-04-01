@@ -6,6 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 public class EditAccountController extends CommonProprietiesController {
 
@@ -44,12 +45,18 @@ public class EditAccountController extends CommonProprietiesController {
 
 	@FXML
 	void handleCancelPressed(ActionEvent event) {
-
+		//return to account
+		openScene(PERSISTANCE_NAME_ACCOUNT);
+		Stage primaryStage = (Stage) cancel.getScene().getWindow();
+		primaryStage.close();
 	}
 
 	@FXML
 	void handleSaveChangesPressed(ActionEvent event) {
-
+		//returning to account after editing 
+		openScene(PERSISTANCE_NAME_ACCOUNT);
+		Stage primaryStage = (Stage) cancel.getScene().getWindow();
+		primaryStage.close();
 	}
 
 	@FXML

@@ -1,5 +1,6 @@
 package model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,10 +17,11 @@ import javax.persistence.Table;
 @Entity
 @NamedQuery(name = "readAllAccounts", query = "select ac from Account ac")
 @Table(name = "account")
-public class Account {
+public class Account implements Serializable {
+
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id")
 	private long id;
 

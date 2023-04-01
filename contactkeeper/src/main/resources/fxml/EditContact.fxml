@@ -13,18 +13,28 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="441.0" prefWidth="450.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.NewContactController">
+<AnchorPane prefHeight="524.0" prefWidth="490.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.EditContactController">
    <children>
-      <Pane layoutX="-1.0" prefHeight="473.0" prefWidth="453.0">
+      <Pane prefHeight="524.0" prefWidth="490.0">
          <children>
-            <ImageView fitHeight="473.0" fitWidth="454.0">
+            <ImageView fitHeight="531.0" fitWidth="490.0">
                <image>
-                  <Image url="@Fotos/grain.jpeg" />
+                  <Image url="@../images/Sunlight%20Pine.jpeg" />
                </image>
             </ImageView>
-            <BorderPane prefHeight="57.0" prefWidth="454.0">
+            <BorderPane prefHeight="524.0" prefWidth="490.0">
+               <top>
+                  <Label text="Edit contact" textFill="WHITE" BorderPane.alignment="CENTER">
+                     <font>
+                        <Font name="Arial Bold" size="22.0" />
+                     </font>
+                     <BorderPane.margin>
+                        <Insets top="20.0" />
+                     </BorderPane.margin>
+                  </Label>
+               </top>
                <left>
-                  <VBox prefHeight="254.0" prefWidth="100.0" spacing="11.0" BorderPane.alignment="CENTER">
+                  <VBox prefHeight="428.0" prefWidth="186.0" spacing="11.4" BorderPane.alignment="CENTER">
                      <children>
                         <Label text="First name:" textFill="WHITE">
                            <font>
@@ -46,7 +56,7 @@
                               <Font name="Arial Bold" size="18.0" />
                            </font>
                         </Label>
-                        <Label text="E-mail:" textFill="WHITE">
+                        <Label text="E-Mail:" textFill="WHITE">
                            <font>
                               <Font name="Arial Bold" size="18.0" />
                            </font>
@@ -65,31 +75,21 @@
                            <font>
                               <Font name="Arial Bold" size="18.0" />
                            </font>
-                           <VBox.margin>
-                              <Insets />
-                           </VBox.margin>
                         </Label>
                      </children>
                      <BorderPane.margin>
-                        <Insets top="20.0" />
+                        <Insets top="70.0" />
                      </BorderPane.margin>
                      <padding>
-                        <Insets bottom="10.0" left="20.0" right="-60.0" top="80.0" />
+                        <Insets left="30.0" />
                      </padding>
                   </VBox>
                </left>
-               <top>
-                  <Label text="Adding new contact" textFill="WHITE" BorderPane.alignment="CENTER">
-                     <font>
-                        <Font name="Arial Bold" size="22.0" />
-                     </font>
-                     <BorderPane.margin>
-                        <Insets top="30.0" />
-                     </BorderPane.margin>
-                  </Label>
-               </top>
                <right>
-                  <VBox prefHeight="326.0" prefWidth="100.0" spacing="9.3" BorderPane.alignment="CENTER">
+                  <VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0" BorderPane.alignment="CENTER">
+                     <BorderPane.margin>
+                        <Insets top="65.0" />
+                     </BorderPane.margin>
                      <children>
                         <TextField fx:id="firstNameTextField" opacity="0.7" promptText="First name">
                            <font>
@@ -106,12 +106,12 @@
                               <Font name="Arial Bold" size="12.0" />
                            </font>
                         </TextField>
-                        <TextField fx:id="phoneNumberTextField" opacity="0.7" promptText="Phonume number">
+                        <TextField fx:id="phoneNumberTextField" opacity="0.7" promptText="Phone number">
                            <font>
                               <Font name="Arial Bold" size="12.0" />
                            </font>
                         </TextField>
-                        <TextField fx:id="emailTextField" opacity="0.7" promptText="E-mail">
+                        <TextField fx:id="emailTextField" opacity="0.7" promptText="E-Mail">
                            <font>
                               <Font name="Arial Bold" size="12.0" />
                            </font>
@@ -132,16 +132,13 @@
                            </font>
                         </TextField>
                      </children>
-                     <BorderPane.margin>
-                        <Insets right="170.0" />
-                     </BorderPane.margin>
                      <padding>
-                        <Insets right="-150.0" top="95.0" />
+                        <Insets left="-200.0" right="30.0" />
                      </padding>
                   </VBox>
                </right>
                <bottom>
-                  <HBox prefHeight="36.0" prefWidth="454.0" spacing="10.0" BorderPane.alignment="CENTER">
+                  <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0" BorderPane.alignment="CENTER">
                      <children>
                         <Button fx:id="close" mnemonicParsing="false" onAction="#handleClosePressed" text="Close">
                            <font>
@@ -153,16 +150,16 @@
                               <Font name="Arial Bold" size="12.0" />
                            </font>
                            <HBox.margin>
-                              <Insets left="115.0" />
+                              <Insets left="130.0" />
                            </HBox.margin>
                         </Button>
                      </children>
-                     <padding>
-                        <Insets left="10.0" top="30.0" />
-                     </padding>
                      <BorderPane.margin>
                         <Insets />
                      </BorderPane.margin>
+                     <padding>
+                        <Insets left="10.0" top="70.0" />
+                     </padding>
                   </HBox>
                </bottom>
             </BorderPane>

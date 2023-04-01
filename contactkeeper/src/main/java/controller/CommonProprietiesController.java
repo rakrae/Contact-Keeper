@@ -18,14 +18,17 @@ import javafx.stage.Stage;
 
 public class CommonProprietiesController {
 
-	static final String PERSISTANCE_NAME_LOGIN = "/Login.fxml";
-	static final String PERSISTANCE_NAME_ACCOUNT = "/Account.fxml";
-	static final String PERSISTANCE_NAME_EDITACCOUNT = "/EditAccount";
-	static final String PERSISTANCE_NAME_NEWACCOUNT = "/NewAccount";
-	static final String PERSISTANCE_NAME_CONTACTS = "/Contacts";
-	static final String PERSISTANCE_NAME_CONTACT = "/Contact";
-	static final String PERSISTANCE_NAME_NEWCONTACT = "/NewContact";
-	static final String PERSISTANCE_NAME_EDITCONTACT = "/EditContact";
+
+
+
+	static final String PERSISTANCE_NAME_LOGIN = "/fxml/Login.fxml";
+	static final String PERSISTANCE_NAME_ACCOUNT = "/fxml/Account.fxml";
+	static final String PERSISTANCE_NAME_EDITACCOUNT = "/fxml/EditAccount.fxml";
+	static final String PERSISTANCE_NAME_NEWACCOUNT = "/fxml/NewAccount.fxml";
+	static final String PERSISTANCE_NAME_CONTACTS = "/fxml/Contacts.fxml";
+	static final String PERSISTANCE_NAME_CONTACT = "/fxml/Contact.fxml";
+	static final String PERSISTANCE_NAME_NEWCONTACT = "/fxml/NewContact.fxml";
+	static final String PERSISTANCE_NAME_EDITCONTACT = "/fxml/EditContact.fxml";
 	
 	
 //	Should be able to interract with the account the contacts in an account
@@ -40,9 +43,8 @@ public class CommonProprietiesController {
 //	static ContactRepository contactRepository = new ContactRepositoryJPA();
 //	static ObservableList<Contact> contactList = FXCollections.observableArrayList(contactRepository.readAll());
 //	static ObjectProperty<Contact> selectedContact = new SimpleObjectProperty<Contact>();
-//	
-//	
-//	
+
+
 	
 	public void openScene(String scene) {
 

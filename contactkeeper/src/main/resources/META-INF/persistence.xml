@@ -5,11 +5,11 @@
     <class>model.Account</class> <!-- Must change -->
     <class>model.Contact</class>
     <properties>
-      <property name="javax.persistence.jdbc.driver" value="org.apache.derby.jdbc.EmbeddedDriver"/> <!-- com.mysql.jdbc.Driver -->
-      <property name="javax.persistence.jdbc.url" value="jdbc:derby:contactKeeper;create=true" /> <!-- memory added !!!!  -->
-      <property name="javax.persistence.jdbc.user" value="adi" />
-      <property name="javax.persistence.jdbc.password" value="rakrae" />
-      <property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect" />
+      <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/> <!-- com.mysql.jdbc.Driver -->
+      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/contactKeeper" /> <!-- memory added !!!!  -->
+      <property name="javax.persistence.jdbc.user" value="root" />
+      <property name="javax.persistence.jdbc.password" value="X!3_?@vR7mers" />
+      <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />
 	  <property name="hibernate.show_sql" value="true" />
 	  <property name="javax.persistence.schema-generation.create-database-schemas" value="true"/>
     </properties>

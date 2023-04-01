@@ -12,13 +12,13 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="463.0" prefWidth="475.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LoginController">
+<AnchorPane prefHeight="463.0" prefWidth="475.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LoginController">
    <children>
       <AnchorPane prefHeight="463.0" prefWidth="475.0">
          <children>
             <ImageView fitHeight="463.0" fitWidth="475.0">
                <image>
-                  <Image url="@Fotos/16%20of%20the%20Best%20Places%20to%20Visit%20in%20Italy.jpeg" />
+                  <Image url="@../images/16%20of%20the%20Best%20Places%20to%20Visit%20in%20Italy.jpeg" />
                </image>
             </ImageView>
             <BorderPane prefHeight="463.0" prefWidth="475.0">

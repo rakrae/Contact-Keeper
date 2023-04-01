@@ -12,38 +12,38 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="474.0" prefWidth="467.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.NewAccountController">
+<AnchorPane prefHeight="517.0" prefWidth="470.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.EditAccountController">
    <children>
-      <Pane layoutX="4.0" prefHeight="474.0" prefWidth="460.0">
+      <Pane prefHeight="517.0" prefWidth="470.0">
          <children>
-            <ImageView fitHeight="474.0" fitWidth="478.0" layoutX="-11.0">
+            <ImageView fitHeight="524.0" fitWidth="478.0">
                <image>
-                  <Image url="@Fotos/The%20Cave%20Of%20Three%20Bridges%20In%20Lebanon%20Turns%20Into%20A%20Waterfall%20When%20The%20Winter%20Snow%20Melts.jpeg" />
+                  <Image url="@../images/Download%20(2).jpeg" />
                </image>
             </ImageView>
-            <BorderPane layoutX="1.0" prefHeight="465.0" prefWidth="460.0">
+            <BorderPane layoutX="1.0" prefHeight="517.0" prefWidth="470.0">
                <top>
-                  <Label text="New account" textFill="WHITE" BorderPane.alignment="CENTER">
+                  <Label prefHeight="0.0" prefWidth="142.0" text="Edit account" textFill="WHITE" BorderPane.alignment="CENTER">
                      <font>
                         <Font name="Arial Bold" size="22.0" />
                      </font>
                      <BorderPane.margin>
                         <Insets top="10.0" />
                      </BorderPane.margin>
-                  </Label>
-               </top>
-               <left>
-                  <VBox prefHeight="418.0" prefWidth="181.0" spacing="10.0" BorderPane.alignment="CENTER">
                      <padding>
                         <Insets top="20.0" />
                      </padding>
+                  </Label>
+               </top>
+               <left>
+                  <VBox prefHeight="245.0" prefWidth="176.0" spacing="10.0" BorderPane.alignment="CENTER">
                      <children>
-                        <Label text="Account:" textFill="WHITE">
+                        <Label text="Old password:" textFill="WHITE">
                            <font>
                               <Font name="Arial Bold" size="18.0" />
                            </font>
                         </Label>
-                        <Label text="Password:" textFill="WHITE">
+                        <Label text="New password:" textFill="WHITE">
                            <font>
                               <Font name="Arial Bold" size="18.0" />
                            </font>
@@ -75,28 +75,51 @@
                         </Label>
                      </children>
                      <BorderPane.margin>
-                        <Insets left="15.0" top="20.0" />
+                        <Insets left="10.0" />
                      </BorderPane.margin>
+                     <padding>
+                        <Insets top="70.0" />
+                     </padding>
                   </VBox>
                </left>
-               <center>
-                  <VBox prefHeight="430.0" prefWidth="260.0" spacing="7.0" BorderPane.alignment="CENTER">
+               <bottom>
+                  <VBox prefHeight="67.0" prefWidth="470.0" spacing="5.0" BorderPane.alignment="CENTER">
                      <children>
-                        <TextField fx:id="accountTextField" opacity="0.7" promptText="Account">
+                        <Button fx:id="saveChanges" mnemonicParsing="false" onAction="#handleSaveChangesPressed" text="Save changes">
                            <font>
                               <Font name="Arial Bold" size="12.0" />
                            </font>
-                        </TextField>
-                        <TextField fx:id="passwordTextField" opacity="0.7" promptText="Password">
+                           <VBox.margin>
+                              <Insets left="-20.0" />
+                           </VBox.margin></Button>
+                        <Button fx:id="cancel" mnemonicParsing="false" onAction="#handleCancelPressed" text="Cancel">
                            <font>
                               <Font name="Arial Bold" size="12.0" />
-                           </font>
-                        </TextField>
-                        <TextField fx:id="reenterpasswordTextField" opacity="0.7" promptText="Re-enter password">
+                           </font></Button>
+                     </children>
+                     <padding>
+                        <Insets left="200.0" top="-20.0" />
+                     </padding>
+                     <BorderPane.margin>
+                        <Insets top="150.0" />
+                     </BorderPane.margin>
+                  </VBox>
+               </bottom>
+               <right>
+                  <VBox prefHeight="200.0" prefWidth="281.0" spacing="7.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <TextField fx:id="oldPasswordTextfield" opacity="0.7" promptText="Old password">
                            <font>
                               <Font name="Arial Bold" size="12.0" />
-                           </font>
-                        </TextField>
+                           </font></TextField>
+                        <TextField fx:id="newPasswordTextField" opacity="0.7" promptText="New password">
+                           <font>
+                              <Font name="Arial Bold" size="12.0" />
+                           </font></TextField>
+                        <TextField fx:id="reEnterPassword" opacity="0.7" promptText="Re-enter password">
+                           <font>
+                              <Font name="Arial Bold" size="12.0" />
+                           </font></TextField>
                         <TextField fx:id="firstNameTextField" opacity="0.7" promptText="First name">
                            <font>
                               <Font name="Arial Bold" size="12.0" />
@@ -105,39 +128,23 @@
                            <font>
                               <Font name="Arial Bold" size="12.0" />
                            </font></TextField>
-                        <TextField fx:id="genderTextField" opacity="0.7" promptText="Gender" />
-                        <TextField fx:id="ageTextField" opacity="0.7" promptText="Age" />
-                     </children>
-                     <BorderPane.margin>
-                        <Insets right="15.0" top="40.0" />
-                     </BorderPane.margin>
-                  </VBox>
-               </center>
-               <bottom>
-                  <VBox prefHeight="61.0" prefWidth="439.0" spacing="10.0" BorderPane.alignment="CENTER">
-                     <children>
-                        <Button fx:id="createNewAccount" mnemonicParsing="false" onAction="#handleCreateNewAccountPressed" text="Create new account">
+                        <TextField fx:id="genderTextField" opacity="0.7" promptText="Gender">
                            <font>
                               <Font name="Arial Bold" size="12.0" />
-                           </font>
-                        </Button>
-                        <Button fx:id="cancelCreate" mnemonicParsing="false" onAction="#handleCancelPressed" text="Cancel">
+                           </font></TextField>
+                        <TextField fx:id="ageTextField" opacity="0.7" promptText="Age">
                            <font>
                               <Font name="Arial Bold" size="12.0" />
-                           </font>
-                           <VBox.margin>
-                              <Insets left="35.0" />
-                           </VBox.margin>
-                        </Button>
+                           </font></TextField>
                      </children>
                      <BorderPane.margin>
-                        <Insets top="130.0" />
+                        <Insets top="25.0" />
                      </BorderPane.margin>
                      <padding>
-                        <Insets left="150.0" />
+                        <Insets right="10.0" top="45.0" />
                      </padding>
                   </VBox>
-               </bottom>
+               </right>
             </BorderPane>
          </children>
       </Pane>

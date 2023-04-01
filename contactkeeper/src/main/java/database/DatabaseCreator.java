@@ -4,28 +4,24 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
+import javax.persistence.PersistenceContext;
+import javax.persistence.PersistenceUnit;
+
 import model.Account;
 import model.Contact;
 
 public class DatabaseCreator {
 
-	private final static String PERSISTANCE_NAME = "contactKeeper";
-
-	// to create/initialise a data base
-
-	private static final EntityManagerFactory ENTITY_MANAGER_FACTORY = Persistence
-			.createEntityManagerFactory(PERSISTANCE_NAME);
-
-	public static EntityManagerFactory getEntityManagerFactory() {
-		return ENTITY_MANAGER_FACTORY;
-	}
+	
+	private static final String database = "contactKeeper";
+	private static EntityManagerFactory emf;
+	private static EntityManager em;
 	
 	
-
 	public static void insertDummyData() {
 
 		
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory(PERSISTANCE_NAME);
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory(database);
 		EntityManager em = emf.createEntityManager();
 		EntityTransaction et = em.getTransaction();
 

@@ -3,7 +3,6 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -13,18 +12,18 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="524.0" prefWidth="490.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.EditContactController">
+<AnchorPane prefHeight="529.0" prefWidth="493.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ContactController">
    <children>
-      <Pane prefHeight="524.0" prefWidth="490.0">
+      <Pane prefHeight="529.0" prefWidth="493.0">
          <children>
-            <ImageView fitHeight="524.0" fitWidth="490.0">
+            <ImageView fitHeight="536.0" fitWidth="500.0">
                <image>
-                  <Image url="@Fotos/Sunlight%20Pine.jpeg" />
+                  <Image url="@../images/Collection%20Of%20Amazing%20Sunrays%20In%20The%20Forest%20In%20The%20Netherlands.png" />
                </image>
             </ImageView>
-            <BorderPane prefHeight="524.0" prefWidth="490.0">
+            <BorderPane prefHeight="529.0" prefWidth="500.0">
                <top>
-                  <Label text="Edit contact" textFill="WHITE" BorderPane.alignment="CENTER">
+                  <Label text="Contact" textFill="WHITE" BorderPane.alignment="CENTER">
                      <font>
                         <Font name="Arial Bold" size="22.0" />
                      </font>
@@ -34,7 +33,7 @@
                   </Label>
                </top>
                <left>
-                  <VBox prefHeight="428.0" prefWidth="186.0" spacing="11.4" BorderPane.alignment="CENTER">
+                  <VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0" BorderPane.alignment="CENTER">
                      <children>
                         <Label text="First name:" textFill="WHITE">
                            <font>
@@ -56,7 +55,7 @@
                               <Font name="Arial Bold" size="18.0" />
                            </font>
                         </Label>
-                        <Label text="E-Mail:" textFill="WHITE">
+                        <Label text="E-mail:" textFill="WHITE">
                            <font>
                               <Font name="Arial Bold" size="18.0" />
                            </font>
@@ -78,79 +77,79 @@
                         </Label>
                      </children>
                      <BorderPane.margin>
-                        <Insets top="70.0" />
+                        <Insets left="30.0" top="50.0" />
                      </BorderPane.margin>
                      <padding>
-                        <Insets left="30.0" />
+                        <Insets right="-40.0" />
                      </padding>
                   </VBox>
                </left>
                <right>
                   <VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0" BorderPane.alignment="CENTER">
-                     <BorderPane.margin>
-                        <Insets top="65.0" />
-                     </BorderPane.margin>
                      <children>
-                        <TextField fx:id="firstNameTextField" opacity="0.7" promptText="First name">
+                        <Label fx:id="firstNameTextField" text="First name" textFill="WHITE">
                            <font>
-                              <Font name="Arial Bold" size="12.0" />
+                              <Font name="Arial Bold" size="18.0" />
                            </font>
-                        </TextField>
-                        <TextField fx:id="lastNameTextField" opacity="0.7" promptText="Last name">
+                        </Label>
+                        <Label fx:id="lastNameTextField" text="Last name" textFill="WHITE">
                            <font>
-                              <Font name="Arial Bold" size="12.0" />
+                              <Font name="Arial Bold" size="18.0" />
                            </font>
-                        </TextField>
-                        <TextField fx:id="addressTextField" opacity="0.7" promptText="Address">
+                        </Label>
+                        <Label fx:id="addressTextField" text="Address" textFill="WHITE">
                            <font>
-                              <Font name="Arial Bold" size="12.0" />
+                              <Font name="Arial Bold" size="18.0" />
                            </font>
-                        </TextField>
-                        <TextField fx:id="phoneNumberTextField" opacity="0.7" promptText="Phone number">
+                        </Label>
+                        <Label fx:id="phoneNumberTextField" text="Phone number" textFill="WHITE">
                            <font>
-                              <Font name="Arial Bold" size="12.0" />
+                              <Font name="Arial Bold" size="18.0" />
                            </font>
-                        </TextField>
-                        <TextField fx:id="emailTextField" opacity="0.7" promptText="E-Mail">
+                        </Label>
+                        <Label fx:id="emailTextField" text="E-mail" textFill="WHITE">
                            <font>
-                              <Font name="Arial Bold" size="12.0" />
+                              <Font name="Arial Bold" size="18.0" />
                            </font>
-                        </TextField>
-                        <TextField fx:id="facebookTextField" opacity="0.7" promptText="Facebook">
+                        </Label>
+                        <Label fx:id="facebookTextField" text="Facebook" textFill="WHITE">
                            <font>
-                              <Font name="Arial Bold" size="12.0" />
+                              <Font name="Arial Bold" size="18.0" />
                            </font>
-                        </TextField>
-                        <TextField fx:id="linkedInTextField" opacity="0.7" promptText="LinkedIn">
+                        </Label>
+                        <Label fx:id="linkedInTextField" text="LinkedIn" textFill="WHITE">
                            <font>
-                              <Font name="Arial Bold" size="12.0" />
+                              <Font name="Arial Bold" size="18.0" />
                            </font>
-                        </TextField>
-                        <TextField fx:id="instagramTextField" opacity="0.7" promptText="Instagram">
+                        </Label>
+                        <Label fx:id="instagramTextField" text="Instagram" textFill="WHITE">
                            <font>
-                              <Font name="Arial Bold" size="12.0" />
+                              <Font name="Arial Bold" size="18.0" />
                            </font>
-                        </TextField>
+                        </Label>
                      </children>
+                     <BorderPane.margin>
+                        <Insets top="50.0" />
+                     </BorderPane.margin>
                      <padding>
-                        <Insets left="-200.0" right="30.0" />
+                        <Insets left="-110.0" />
                      </padding>
                   </VBox>
                </right>
                <bottom>
                   <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0" BorderPane.alignment="CENTER">
                      <children>
-                        <Button fx:id="close" mnemonicParsing="false" onAction="#handleClosePressed" text="Close">
+                        <Button fx:id="back" mnemonicParsing="false" onAction="#handleBackPressed" text="Back">
                            <font>
                               <Font name="Arial Bold" size="12.0" />
                            </font>
                         </Button>
-                        <Button fx:id="saveChanges" mnemonicParsing="false" onAction="#handleSaveChangesPressed" text="Save changes">
+                        <Button fx:id="editContact" mnemonicParsing="false" onAction="#handleEditContactPressed" text="Edit contact">
                            <font>
                               <Font name="Arial Bold" size="12.0" />
                            </font>
                            <HBox.margin>
-                              <Insets left="130.0" />
+                              <Insets left="140.0" />
                            </HBox.margin>
                         </Button>
                      </children>

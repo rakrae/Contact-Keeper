@@ -6,6 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.stage.Stage;
 
 public class ContactController extends CommonProprietiesController {
 
@@ -47,13 +48,19 @@ public class ContactController extends CommonProprietiesController {
 
 	@FXML
 	void handleBackPressed(ActionEvent event) {
-
+		//going back to the account scene
+		openScene(PERSISTANCE_NAME_ACCOUNT);
+		Stage primaryStage = (Stage) back.getScene().getWindow();
+		primaryStage.close();
 	}
 
 
 	@FXML
 	void handleEditContactPressed(ActionEvent event) {
-
+		// opens the edit contact scene
+		openScene(PERSISTANCE_NAME_EDITCONTACT);
+		Stage primaryStage = (Stage) back.getScene().getWindow();
+		primaryStage.close();
 	}
 
 	@FXML

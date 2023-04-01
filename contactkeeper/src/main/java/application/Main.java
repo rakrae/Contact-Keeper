@@ -1,5 +1,6 @@
 package application;
 
+import database.DatabaseCreator;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -8,15 +9,14 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 
-	
-	
 	@Override
 	public void start(Stage primaryStage) {
 		try {
 			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(getClass().getResource("/Login.fxml"));
+			loader.setLocation(getClass().getResource("/fxml/Login.fxml"));
 			Parent root = loader.load();
 			Scene scene = new Scene(root);
+			scene.getStylesheets();
 			primaryStage.setScene(scene);
 			primaryStage.show();
 
@@ -27,9 +27,9 @@ public class Main extends Application {
 	}
 
 	public static void main(String[] args) {
-	
-
+		DatabaseCreator.insertDummyData();
 		launch(args);
+		
 	}
 
 }

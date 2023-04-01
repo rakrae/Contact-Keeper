@@ -1,5 +1,7 @@
 package model;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -14,10 +16,11 @@ import javax.persistence.Table;
 @Entity
 @NamedQuery(name = "readAllContacts", query = "select cnt from Contact cnt")
 @Table(name = "contacts")
-public class Contact {
+public class Contact implements Serializable {
+
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 
 	@Column(name = "first_name")
