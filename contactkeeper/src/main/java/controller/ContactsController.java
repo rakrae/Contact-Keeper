@@ -7,9 +7,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.stage.Stage;
+import javafx.scene.control.TextField;
 
-public class ContactsController extends CommonProprietiesController {
+public class ContactsController {
 
     @FXML
     private ResourceBundle resources;
@@ -36,27 +36,29 @@ public class ContactsController extends CommonProprietiesController {
     private TableColumn<?, ?> deleteColumn;
 
     @FXML
+    private Button search;
+
+    @FXML
+    private TextField searchContactTextField;
+
+    @FXML
     void handleAddContactPressed(ActionEvent event) {
-    	System.out.println("bla bla");
-    	//open the add contact scene
-    	openScene(PERSISTANCE_NAME_NEWCONTACT);
-    	Stage primaryStage = (Stage)back.getScene().getWindow();
-    	primaryStage.close();
-    	
+
     }
 
     @FXML
     void handleBackPressed(ActionEvent event) {
-    	//going back to Account
-    	openScene(PERSISTANCE_NAME_ACCOUNT);
-    	Stage primaryStage = (Stage)addContact.getScene().getWindow();
-    	primaryStage.close();
+
     }
 
     @FXML
     void handleClosePressed(ActionEvent event) {
-    	//Closes the program
-    	System.exit(0);
+
+    }
+
+    @FXML
+    void handleSearchPressed(ActionEvent event) {
+    	System.out.println("It works");
     }
 
     @FXML
@@ -67,6 +69,8 @@ public class ContactsController extends CommonProprietiesController {
         assert contactsColumn != null : "fx:id=\"contactsColumn\" was not injected: check your FXML file 'Contacts.fxml'.";
         assert contactsView != null : "fx:id=\"contactsView\" was not injected: check your FXML file 'Contacts.fxml'.";
         assert deleteColumn != null : "fx:id=\"deleteColumn\" was not injected: check your FXML file 'Contacts.fxml'.";
+        assert search != null : "fx:id=\"search\" was not injected: check your FXML file 'Contacts.fxml'.";
+        assert searchContactTextField != null : "fx:id=\"searchContactTextField\" was not injected: check your FXML file 'Contacts.fxml'.";
 
     }
 
