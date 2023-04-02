@@ -26,7 +26,7 @@ public class Account implements Serializable {
 	private long id;
 
 	@Column(nullable = false)
-	private String account;
+	private String userName;
 
 	@Column(nullable = false)
 	private String password;
@@ -48,11 +48,11 @@ public class Account implements Serializable {
 		super();
 	}
 
-	public Account(long id, String account, String password, String firstName, String lastName, String gender, int age,
+	public Account(long id, String userName, String password, String firstName, String lastName, String gender, int age,
 			Contact contact) {
 		super();
 		this.id = id;
-		this.account = account;
+		this.userName = userName;
 		this.password = password;
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -70,12 +70,12 @@ public class Account implements Serializable {
 		this.id = id;
 	}
 
-	public String getAccount() {
-		return account;
+	public String getUsernName() {
+		return userName;
 	}
 
-	public void setAccount(String account) {
-		this.account = account;
+	public void setAccount(String userName) {
+		this.userName = userName;
 	}
 
 	public String getPassword() {
@@ -139,7 +139,7 @@ public class Account implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Account [id=" + id + ", account=" + account + ", password=" + password + ", firstName=" + firstName
+		return "Account [id=" + id + ", userName=" + userName + ", password=" + password + ", firstName=" + firstName
 				+ ", lastName=" + lastName + ", gender=" + gender + ", age=" + age + "]";
 	};
 

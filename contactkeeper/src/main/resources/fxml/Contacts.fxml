@@ -80,7 +80,7 @@
                         <Font name="Arial Bold" size="12.0" />
                      </font>
                   </Button>
-                  <Button mnemonicParsing="false" text="Search">
+                  <Button fx:id="search" mnemonicParsing="false" onAction="#handleSearchPressed" text="Search">
                      <font>
                         <Font name="Arial Bold" size="12.0" />
                      </font>

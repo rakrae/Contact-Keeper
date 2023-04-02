@@ -15,12 +15,13 @@ import javax.persistence.Table;
 
 @Entity
 @NamedQuery(name = "readAllContacts", query = "select cnt from Contact cnt")
-@Table(name = "contacts")
+@Table(name = "contact")
 public class Contact implements Serializable {
 
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "id")
 	private long id;
 
 	@Column(name = "first_name")
