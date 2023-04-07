@@ -1,15 +1,20 @@
 package controller;
 
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
+
+import common.BaseController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import model.Account;
 
-public class LoginController extends CommonProprietiesController {
+public class LoginController extends BaseController {
 
     @FXML
     private ResourceBundle resources;
@@ -18,7 +23,7 @@ public class LoginController extends CommonProprietiesController {
     private URL location;
 
     @FXML
-    private TextField accountTextField;
+    private TextField userNameTextField;
 
     @FXML
     private Button close;
@@ -31,6 +36,9 @@ public class LoginController extends CommonProprietiesController {
 
     @FXML
     private PasswordField passwordTextField;
+    
+    @FXML
+	private Label invalidCredentialsLabel;
 
     @FXML
     void handleClosePressed(ActionEvent event) {
@@ -39,29 +47,43 @@ public class LoginController extends CommonProprietiesController {
 
     @FXML
     void handleLoginPressed(ActionEvent event) {
-    	//opens account scene
-    	openScene(PERSISTANCE_NAME_ACCOUNT);
-    	
-    	Stage primaryStage = (Stage) accountTextField.getScene().getWindow();
-    	primaryStage.close();
+    	String userName = userNameTextField.getText();
+		String password = passwordTextField.getText();
+
+		if (validateLoginInput(userName, password)) {
+			attemptLogin(userName, password);
+		} else {
+			invalidCredentialsLabel.setText("Username and password must not be empty.");
+		}
+	}
+
+	private boolean validateLoginInput(String userName, String password) {
+		return !userName.isEmpty() && !password.isEmpty();
+	}
+
+	private void attemptLogin(String userName, String password) {
+		Optional<Account> optAccount = accountRepository.findByUserName(userName);
+		if (optAccount.isPresent() && optAccount.get().getPassword().equals(password)) {
+			setLoggedInAccount(optAccount.get());
+			navigateTo(PERSISTANCE_NAME_ACCOUNT, (Stage) userNameTextField.getScene().getWindow());
+		} else {
+			invalidCredentialsLabel.setText("Invalid username or password.");
+		}
     }
 
     @FXML
     void handleNewAccountPressed(ActionEvent event) {
-    	//opens new account scene
-    	openScene(PERSISTANCE_NAME_NEWACCOUNT);
-    	
-    	Stage primaryStage = (Stage) accountTextField.getScene().getWindow();
-    	primaryStage.close();
+    	navigateTo(PERSISTANCE_NAME_NEWACCOUNT, (Stage) userNameTextField.getScene().getWindow());
     }
 
     @FXML
     void initialize() {
-        assert accountTextField != null : "fx:id=\"accountTextField\" was not injected: check your FXML file 'Login.fxml'.";
-        assert close != null : "fx:id=\"close\" was not injected: check your FXML file 'Login.fxml'.";
-        assert login != null : "fx:id=\"login\" was not injected: check your FXML file 'Login.fxml'.";
-        assert newAccount != null : "fx:id=\"newAccount\" was not injected: check your FXML file 'Login.fxml'.";
-        assert passwordTextField != null : "fx:id=\"passwordTextField\" was not injected: check your FXML file 'Login.fxml'.";
+    	  assert close != null : "fx:id=\"close\" was not injected: check your FXML file 'Login.fxml'.";
+          assert invalidCredentialsLabel != null : "fx:id=\"invalidCredentialsLabel\" was not injected: check your FXML file 'Login.fxml'.";
+          assert login != null : "fx:id=\"login\" was not injected: check your FXML file 'Login.fxml'.";
+          assert newAccount != null : "fx:id=\"newAccount\" was not injected: check your FXML file 'Login.fxml'.";
+          assert passwordTextField != null : "fx:id=\"passwordTextField\" was not injected: check your FXML file 'Login.fxml'.";
+          assert userNameTextField != null : "fx:id=\"userNameTextField\" was not injected: check your FXML file 'Login.fxml'.";
 
     }
 

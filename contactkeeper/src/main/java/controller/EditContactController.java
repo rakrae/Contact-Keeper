@@ -2,13 +2,17 @@ package controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import application.ApplicationContext;
+import common.BaseController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import model.Contact;
 
-public class EditContactController extends CommonProprietiesController {
+public class EditContactController extends BaseController {
 
     @FXML
     private ResourceBundle resources;
@@ -46,20 +50,26 @@ public class EditContactController extends CommonProprietiesController {
     @FXML
     private Button saveChanges;
 
+    private Contact selectedContact;
+    
     @FXML
     void handleClosePressed(ActionEvent event) {
-    	//returns to account
-    	openScene(PERSISTANCE_NAME_ACCOUNT);
-    	Stage primaryStage = (Stage) close.getScene().getWindow();
-    	primaryStage.close();
+    	navigateTo(PERSISTANCE_NAME_CONTACTS, (Stage) saveChanges.getScene().getWindow());
     }
 
     @FXML
     void handleSaveChangesPressed(ActionEvent event) {
-    	//returnning to account
-    	openScene(PERSISTANCE_NAME_ACCOUNT);
-    	Stage primaryStage = (Stage) close.getScene().getWindow();
-    	primaryStage.close();
+    	selectedContact.setAddress(addressTextField.getText());
+        selectedContact.setEmail(emailTextField.getText());
+        selectedContact.setFacebook(facebookTextField.getText());
+        selectedContact.setFirstName(firstNameTextField.getText());
+        selectedContact.setInstagram(instagramTextField.getText());
+        selectedContact.setLastName(lastNameTextField.getText());
+        selectedContact.setLinkedIn(linkedInTextField.getText());
+        selectedContact.setPhoneNumber(Integer.parseInt(phoneNumberTextField.getText()));
+        contactRepository.update(selectedContact);
+        
+    	navigateTo(PERSISTANCE_NAME_CONTACTS, (Stage) saveChanges.getScene().getWindow());
     }
 
     @FXML
@@ -75,6 +85,16 @@ public class EditContactController extends CommonProprietiesController {
         assert phoneNumberTextField != null : "fx:id=\"phoneNumberTextField\" was not injected: check your FXML file 'EditContact.fxml'.";
         assert saveChanges != null : "fx:id=\"saveChanges\" was not injected: check your FXML file 'EditContact.fxml'.";
 
+        selectedContact = ApplicationContext.getSelectedContact();
+
+        firstNameTextField.setText(selectedContact.getFirstName());
+        lastNameTextField.setText(selectedContact.getLastName());
+        phoneNumberTextField.setText(Integer.toString(selectedContact.getPhoneNumber()));
+        emailTextField.setText(selectedContact.getEmail());
+        addressTextField.setText(selectedContact.getAddress());
+        facebookTextField.setText(selectedContact.getFacebook());
+        instagramTextField.setText(selectedContact.getInstagram());
+        linkedInTextField.setText(selectedContact.getLinkedIn());
     }
 
 }

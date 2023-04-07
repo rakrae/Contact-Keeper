@@ -1,17 +1,22 @@
 package controller;
 
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
+
+import common.BaseController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-public class AccountController extends CommonProprietiesController {
+public class AccountController extends BaseController {
 
     @FXML
     private ResourceBundle resources;
@@ -48,7 +53,7 @@ public class AccountController extends CommonProprietiesController {
 
     @FXML
     void handleBackPressed(ActionEvent event) {
-
+    	navigateTo(PERSISTANCE_NAME_LOGIN, (Stage) back.getScene().getWindow());
     }
 
     @FXML
@@ -58,26 +63,26 @@ public class AccountController extends CommonProprietiesController {
 
     @FXML
     void handleContactsPressed(ActionEvent event) {
-    	// opens the list of contacts
-    	openScene(PERSISTANCE_NAME_CONTACTS);
-    	Stage primaryStage = (Stage) contacts.getScene().getWindow();
-    	primaryStage.close();
+    	navigateTo(PERSISTANCE_NAME_CONTACTS, (Stage) contacts.getScene().getWindow());
     }
 
     @FXML
     void handleDeleteAccountPressed(ActionEvent event) {
-    	//after deleteing the account it should return to the login scene
-    	openScene(PERSISTANCE_NAME_LOGIN);
-    	Stage primaryStage = (Stage) contacts.getScene().getWindow();
-    	primaryStage.close();
+    	Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirm Delete");
+        alert.setHeaderText("Are you sure you want to delete this account?");
+        alert.setContentText("This action cannot be undone.");
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK) {
+    	accountRepository.delete(getLoggedInAccount());
+    	navigateTo(PERSISTANCE_NAME_LOGIN, (Stage) deleteAccount.getScene().getWindow());
+        }
     }
 
     @FXML
     void handleEditAccountPressed(ActionEvent event) {
-    	//opening the edit account scene
-    	openScene(PERSISTANCE_NAME_EDITCONTACT); 
-    	Stage primaryStage = (Stage) contacts.getScene().getWindow();
-    	primaryStage.close();
+    	navigateTo(PERSISTANCE_NAME_EDITACCOUNT, (Stage) editAccount.getScene().getWindow());
     }
 
     @FXML
