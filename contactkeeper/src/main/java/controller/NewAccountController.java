@@ -4,13 +4,20 @@ import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
+import javafx.scene.control.TextArea;
+import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBar.ButtonData;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import common.BaseController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Priority;
 import javafx.stage.Stage;
 import model.Account;
 
@@ -92,6 +99,15 @@ public class NewAccountController extends BaseController {
 
         if (password.isEmpty()) {
             errorMessageLabel.setText("Password cannot be empty.");
+            return;
+        }
+        
+     // Regular expression to match password criteria
+        String passwordRegex = rgx;
+
+        if (!password.matches(passwordRegex)) {
+        	alertPassword();
+//        	errorMessageLabel.setText("Password must contain at least one lowercase letter, one uppercase letter, one number, one special character, and be at least 8 characters long.");
             return;
         }
 

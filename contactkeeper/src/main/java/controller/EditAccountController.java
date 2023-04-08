@@ -13,7 +13,6 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import model.Account;
 
-
 public class EditAccountController extends BaseController {
 
 	@FXML
@@ -48,7 +47,7 @@ public class EditAccountController extends BaseController {
 
 	@FXML
 	private Button saveChanges;
-	
+
 	@FXML
 	private Label errorLabelMessages;
 
@@ -70,14 +69,24 @@ public class EditAccountController extends BaseController {
 		String newPassword = newPasswordTextField.getText();
 		String reEnteredPassword = reEnterPassword.getText();
 
+		// Regular expression to match password criteria
+		String passwordRegex = rgx;
+
 		if (!oldPassword.isEmpty() || !newPassword.isEmpty() || !reEnteredPassword.isEmpty()) {
-            if (validatePasswordChange(oldPassword, newPassword, reEnteredPassword, loggedInAccount)) {
-                loggedInAccount.setPassword(newPassword);
-            } else {
-                errorLabelMessages.setText("Password change validation failed.");
-                return;
-            }
-        }
+			if (validatePasswordChange(oldPassword, newPassword, reEnteredPassword, loggedInAccount)) {
+				if (newPassword.matches(passwordRegex)) {
+					loggedInAccount.setPassword(newPassword);
+				} else {
+					alertPassword();
+//					errorLabelMessages.setText(
+//							"Password must contain at least one lowercase letter, one uppercase letter, one number, one special character, and be at least 8 characters long.");
+					return;
+				}
+			}
+		} else {
+			errorLabelMessages.setText("Password change validation failed.");
+			return;
+		}
 
 		accountRepository.update(loggedInAccount);
 		navigateTo(PERSISTANCE_NAME_ACCOUNT, (Stage) saveChanges.getScene().getWindow());
@@ -86,7 +95,7 @@ public class EditAccountController extends BaseController {
 	private boolean validatePasswordChange(String oldPassword, String newPassword, String reEnteredPassword,
 			Account loggedInAccount) {
 		if (oldPassword.isEmpty() || newPassword.isEmpty() || !newPassword.equals(reEnteredPassword)) {
-            return false;
+			return false;
 		}
 
 		return loggedInAccount.getPassword().equals(oldPassword);
@@ -112,18 +121,18 @@ public class EditAccountController extends BaseController {
 		assert saveChanges != null : "fx:id=\"saveChanges\" was not injected: check your FXML file 'EditAccount.fxml'.";
 
 		// Initialize the loggedInAccount fields.
-				Account loggedInAccount = getLoggedInAccount();
+		Account loggedInAccount = getLoggedInAccount();
 
-				// set the values of the text fields
-				firstNameTextField.setText(loggedInAccount.getFirstName());
-				lastNameTextField.setText(loggedInAccount.getLastName());
-				ageTextField.setText(Integer.toString(loggedInAccount.getAge()));
-				genderTextField.setText(loggedInAccount.getGender());
+		// set the values of the text fields
+		firstNameTextField.setText(loggedInAccount.getFirstName());
+		lastNameTextField.setText(loggedInAccount.getLastName());
+		ageTextField.setText(Integer.toString(loggedInAccount.getAge()));
+		genderTextField.setText(loggedInAccount.getGender());
 
-				// clear the password fields
-				oldPasswordTextfield.setText("");
-				newPasswordTextField.setText("");
-				reEnterPassword.setText("");
+		// clear the password fields
+		oldPasswordTextfield.setText("");
+		newPasswordTextField.setText("");
+		reEnterPassword.setText("");
 	}
 
 }
