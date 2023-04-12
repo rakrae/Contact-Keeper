@@ -45,10 +45,10 @@ public class Account {
 		super();
 	}
 
-	public Account(String account, String password, String firstName,
+	public Account(String userName, String password, String firstName,
 			String lastName, String gender, int age) {
 		super();
-		this.userName = account;
+		this.userName = userName;
 		this.password = password;
 		this.firstName = firstName;
 		this.lastName = lastName;

@@ -6,6 +6,8 @@ import repository.ContactRepository;
 import java.io.IOException;
 import java.lang.reflect.Field;
 
+import org.hibernate.mapping.Component;
+
 import application.ApplicationContext;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -26,7 +28,7 @@ import model.Account;
 public class BaseController {
 	
 	//Regular expression used for passwords
-	public static final String rgx = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}$";
+	public static final String RGX = "^(?!.*\\\\s)(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#&()–[{}]:;',?/*~$^+=<>]).{8,20}$";
 	
 	private static final String FXML_BASE_PATH = "/fxml/";
 
@@ -94,6 +96,10 @@ public class BaseController {
 
     	// Show the dialog box and wait for the user to click the OK button
     	alert.showAndWait();
+    }
+    
+    public void contactDataAllert() {
+    	
     }
     
     

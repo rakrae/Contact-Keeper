@@ -22,6 +22,10 @@ import javafx.stage.Stage;
 import model.Account;
 
 public class NewAccountController extends BaseController {
+	
+    // Regular expression to match password criteria
+    String passwordRegex = RGX;
+
 
     @FXML
     private ResourceBundle resources;
@@ -102,12 +106,8 @@ public class NewAccountController extends BaseController {
             return;
         }
         
-     // Regular expression to match password criteria
-        String passwordRegex = rgx;
-
         if (!password.matches(passwordRegex)) {
         	alertPassword();
-//        	errorMessageLabel.setText("Password must contain at least one lowercase letter, one uppercase letter, one number, one special character, and be at least 8 characters long.");
             return;
         }
 

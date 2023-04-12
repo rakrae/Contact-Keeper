@@ -11,8 +11,6 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -32,12 +30,6 @@ public class AccountController extends BaseController {
 
     @FXML
     private Button close;
-
-    @FXML
-    private TableColumn<?, ?> contactColumn;
-
-    @FXML
-    private TableView<?> contactView;
 
     @FXML
     private Button contacts;
@@ -90,8 +82,6 @@ public class AccountController extends BaseController {
         assert accountText != null : "fx:id=\"accountText\" was not injected: check your FXML file 'Account.fxml'.";
         assert back != null : "fx:id=\"back\" was not injected: check your FXML file 'Account.fxml'.";
         assert close != null : "fx:id=\"close\" was not injected: check your FXML file 'Account.fxml'.";
-        assert contactColumn != null : "fx:id=\"contactColumn\" was not injected: check your FXML file 'Account.fxml'.";
-        assert contactView != null : "fx:id=\"contactView\" was not injected: check your FXML file 'Account.fxml'.";
         assert contacts != null : "fx:id=\"contacts\" was not injected: check your FXML file 'Account.fxml'.";
         assert deleteAccount != null : "fx:id=\"deleteAccount\" was not injected: check your FXML file 'Account.fxml'.";
         assert editAccount != null : "fx:id=\"editAccount\" was not injected: check your FXML file 'Account.fxml'.";

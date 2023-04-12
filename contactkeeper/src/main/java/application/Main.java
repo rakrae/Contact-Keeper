@@ -13,7 +13,7 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-//	        DatabaseCreator.insertDummyData();
+//			 DatabaseCreator.insertDummyData();
 			
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(getClass().getResource("/fxml/Login.fxml"));
@@ -34,6 +34,7 @@ public class Main extends Application {
 	}
 
 	public static void main(String[] args) {
+
 		launch(args);
 	}
 }

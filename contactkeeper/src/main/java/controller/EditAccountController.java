@@ -14,79 +14,77 @@ import javafx.stage.Stage;
 import model.Account;
 
 public class EditAccountController extends BaseController {
+	
+	String passwordRegex = RGX;
 
-	@FXML
-	private ResourceBundle resources;
+    @FXML
+    private ResourceBundle resources;
 
-	@FXML
-	private URL location;
+    @FXML
+    private URL location;
 
-	@FXML
-	private TextField ageTextField;
+    @FXML
+    private TextField ageTextField;
 
-	@FXML
-	private Button cancel;
+    @FXML
+    private Button cancel;
 
-	@FXML
-	private TextField firstNameTextField;
+    @FXML
+    private Label errorLabelMessages;
 
-	@FXML
-	private TextField genderTextField;
+    @FXML
+    private TextField firstNameTextField;
 
-	@FXML
-	private TextField lastNameTextField;
+    @FXML
+    private TextField genderTextField;
 
-	@FXML
-	private PasswordField newPasswordTextField;
+    @FXML
+    private TextField lastNameTextField;
 
-	@FXML
-	private PasswordField oldPasswordTextfield;
+    @FXML
+    private PasswordField newPasswordTextField;
 
-	@FXML
-	private PasswordField reEnterPassword;
+    @FXML
+    private PasswordField oldPasswordTextField;
 
-	@FXML
-	private Button saveChanges;
+    @FXML
+    private PasswordField reEnterPasswordTextField;
 
-	@FXML
-	private Label errorLabelMessages;
+    @FXML
+    private Button saveChanges;
 
-	@FXML
-	void handleCancelPressed(ActionEvent event) {
-		navigateTo(PERSISTANCE_NAME_ACCOUNT, (Stage) cancel.getScene().getWindow());
-	}
+    @FXML
+    void handleCancelPressed(ActionEvent event) {
+    	navigateTo(PERSISTANCE_NAME_ACCOUNT, (Stage) cancel.getScene().getWindow());
+    }
 
-	@FXML
-	void handleSaveChangesPressed(ActionEvent event) {
-		Account loggedInAccount = getLoggedInAccount();
+    @FXML
+    void handleSaveChangesPressed(ActionEvent event) {
+    	Account loggedInAccount = getLoggedInAccount();
 
 		loggedInAccount.setFirstName(firstNameTextField.getText());
 		loggedInAccount.setLastName(lastNameTextField.getText());
 		loggedInAccount.setAge(Integer.parseInt(ageTextField.getText()));
 		loggedInAccount.setGender(genderTextField.getText());
 
-		String oldPassword = oldPasswordTextfield.getText();
+		String oldPassword = oldPasswordTextField.getText();
 		String newPassword = newPasswordTextField.getText();
-		String reEnteredPassword = reEnterPassword.getText();
-
-		// Regular expression to match password criteria
-		String passwordRegex = rgx;
+		String reEnteredPassword = reEnterPasswordTextField.getText();
 
 		if (!oldPassword.isEmpty() || !newPassword.isEmpty() || !reEnteredPassword.isEmpty()) {
-			if (validatePasswordChange(oldPassword, newPassword, reEnteredPassword, loggedInAccount)) {
-				if (newPassword.matches(passwordRegex)) {
-					loggedInAccount.setPassword(newPassword);
-				} else {
-					alertPassword();
-//					errorLabelMessages.setText(
-//							"Password must contain at least one lowercase letter, one uppercase letter, one number, one special character, and be at least 8 characters long.");
-					return;
-				}
+			
+			// checks if the new password also matches regex
+			if(!newPassword.matches(RGX)) {
+				alertPassword();
+	            return;
 			}
-		} else {
-			errorLabelMessages.setText("Password change validation failed.");
-			return;
-		}
+            if (validatePasswordChange(oldPassword, newPassword, reEnteredPassword, loggedInAccount)) {
+                loggedInAccount.setPassword(newPassword);
+            } else {
+                errorLabelMessages.setText("Password change validation failed.");
+                return;
+            }
+        }
 
 		accountRepository.update(loggedInAccount);
 		navigateTo(PERSISTANCE_NAME_ACCOUNT, (Stage) saveChanges.getScene().getWindow());
@@ -95,44 +93,39 @@ public class EditAccountController extends BaseController {
 	private boolean validatePasswordChange(String oldPassword, String newPassword, String reEnteredPassword,
 			Account loggedInAccount) {
 		if (oldPassword.isEmpty() || newPassword.isEmpty() || !newPassword.equals(reEnteredPassword)) {
-			return false;
+            return false;
 		}
 
 		return loggedInAccount.getPassword().equals(oldPassword);
 	}
 
-	@FXML
-	void initialize() {
-		assert ageTextField != null
-				: "fx:id=\"ageTextField\" was not injected: check your FXML file 'EditAccount.fxml'.";
-		assert cancel != null : "fx:id=\"cancel\" was not injected: check your FXML file 'EditAccount.fxml'.";
-		assert firstNameTextField != null
-				: "fx:id=\"firstNameTextField\" was not injected: check your FXML file 'EditAccount.fxml'.";
-		assert genderTextField != null
-				: "fx:id=\"genderTextField\" was not injected: check your FXML file 'EditAccount.fxml'.";
-		assert lastNameTextField != null
-				: "fx:id=\"lastNameTextField\" was not injected: check your FXML file 'EditAccount.fxml'.";
-		assert newPasswordTextField != null
-				: "fx:id=\"newPasswordTextField\" was not injected: check your FXML file 'EditAccount.fxml'.";
-		assert oldPasswordTextfield != null
-				: "fx:id=\"oldPasswordTextfield\" was not injected: check your FXML file 'EditAccount.fxml'.";
-		assert reEnterPassword != null
-				: "fx:id=\"reEnterPassword\" was not injected: check your FXML file 'EditAccount.fxml'.";
-		assert saveChanges != null : "fx:id=\"saveChanges\" was not injected: check your FXML file 'EditAccount.fxml'.";
+    @FXML
+    void initialize() {
+        assert ageTextField != null : "fx:id=\"ageTextField\" was not injected: check your FXML file 'EditAccount.fxml'.";
+        assert cancel != null : "fx:id=\"cancel\" was not injected: check your FXML file 'EditAccount.fxml'.";
+        assert errorLabelMessages != null : "fx:id=\"errorLabelMessages\" was not injected: check your FXML file 'EditAccount.fxml'.";
+        assert firstNameTextField != null : "fx:id=\"firstNameTextField\" was not injected: check your FXML file 'EditAccount.fxml'.";
+        assert genderTextField != null : "fx:id=\"genderTextField\" was not injected: check your FXML file 'EditAccount.fxml'.";
+        assert lastNameTextField != null : "fx:id=\"lastNameTextField\" was not injected: check your FXML file 'EditAccount.fxml'.";
+        assert newPasswordTextField != null : "fx:id=\"newPasswordTextField\" was not injected: check your FXML file 'EditAccount.fxml'.";
+        assert oldPasswordTextField != null : "fx:id=\"oldPasswordTextField\" was not injected: check your FXML file 'EditAccount.fxml'.";
+        assert reEnterPasswordTextField != null : "fx:id=\"reEnterPasswordTextField\" was not injected: check your FXML file 'EditAccount.fxml'.";
+        assert saveChanges != null : "fx:id=\"saveChanges\" was not injected: check your FXML file 'EditAccount.fxml'.";
 
-		// Initialize the loggedInAccount fields.
-		Account loggedInAccount = getLoggedInAccount();
+        
+     // Initialize the loggedInAccount fields.
+     		Account loggedInAccount = getLoggedInAccount();
 
-		// set the values of the text fields
-		firstNameTextField.setText(loggedInAccount.getFirstName());
-		lastNameTextField.setText(loggedInAccount.getLastName());
-		ageTextField.setText(Integer.toString(loggedInAccount.getAge()));
-		genderTextField.setText(loggedInAccount.getGender());
+     		// set the values of the text fields
+     		firstNameTextField.setText(loggedInAccount.getFirstName());
+     		lastNameTextField.setText(loggedInAccount.getLastName());
+     		ageTextField.setText(Integer.toString(loggedInAccount.getAge()));
+     		genderTextField.setText(loggedInAccount.getGender());
 
-		// clear the password fields
-		oldPasswordTextfield.setText("");
-		newPasswordTextField.setText("");
-		reEnterPassword.setText("");
-	}
+     		// clear the password fields
+     		oldPasswordTextField.setText("");
+     		newPasswordTextField.setText("");
+     		reEnterPasswordTextField.setText("");
+    }
 
 }

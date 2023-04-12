@@ -61,11 +61,21 @@ public class NewContactController extends BaseController {
     }
     
     private void createAndSaveNewContact() {
+    	
+    	String phoneNumber = phoneNumberTextField.getText();
+    	int phone;
+    	if (phoneNumber.isEmpty()) {
+    	    phone = 0; // default value
+    	} else {
+    	    // phone number validation 
+    	    phone = Integer.parseInt(phoneNumber);
+    	}
+    	
         Contact newContact = new Contact(
                 firstNameTextField.getText(),
                 lastNameTextField.getText(),
                 addressTextField.getText(),
-                Integer.parseInt(phoneNumberTextField.getText()),
+                phone,
                 emailTextField.getText(),
                 facebookTextField.getText(),
                 linkedInTextField.getText(),
