@@ -3,6 +3,8 @@ package controller;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import common.BaseController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -62,20 +64,11 @@ public class NewContactController extends BaseController {
     
     private void createAndSaveNewContact() {
     	
-    	String phoneNumber = phoneNumberTextField.getText();
-    	int phone;
-    	if (phoneNumber.isEmpty()) {
-    	    phone = 0; // default value
-    	} else {
-    	    // phone number validation 
-    	    phone = Integer.parseInt(phoneNumber);
-    	}
-    	
         Contact newContact = new Contact(
                 firstNameTextField.getText(),
                 lastNameTextField.getText(),
                 addressTextField.getText(),
-                phone,
+                phoneNumberTextField.getText(),
                 emailTextField.getText(),
                 facebookTextField.getText(),
                 linkedInTextField.getText(),
@@ -102,7 +95,6 @@ public class NewContactController extends BaseController {
         assert linkedInTextField != null : "fx:id=\"linkedInTextField\" was not injected: check your FXML file 'NewContact.fxml'.";
         assert phoneNumberTextField != null : "fx:id=\"phoneNumberTextField\" was not injected: check your FXML file 'NewContact.fxml'.";
         assert saveChanges != null : "fx:id=\"saveChanges\" was not injected: check your FXML file 'NewContact.fxml'.";
-
     }
 
 }

@@ -59,6 +59,7 @@ public class EditContactController extends BaseController {
 
     @FXML
     void handleSaveChangesPressed(ActionEvent event) {
+    	
     	selectedContact.setAddress(addressTextField.getText());
         selectedContact.setEmail(emailTextField.getText());
         selectedContact.setFacebook(facebookTextField.getText());
@@ -66,7 +67,7 @@ public class EditContactController extends BaseController {
         selectedContact.setInstagram(instagramTextField.getText());
         selectedContact.setLastName(lastNameTextField.getText());
         selectedContact.setLinkedIn(linkedInTextField.getText());
-        selectedContact.setPhoneNumber(Integer.parseInt(phoneNumberTextField.getText()));
+        selectedContact.setPhoneNumber(phoneNumberTextField.getText());
         contactRepository.update(selectedContact);
         
     	navigateTo(PERSISTANCE_NAME_CONTACTS, (Stage) saveChanges.getScene().getWindow());
@@ -89,7 +90,7 @@ public class EditContactController extends BaseController {
 
         firstNameTextField.setText(selectedContact.getFirstName());
         lastNameTextField.setText(selectedContact.getLastName());
-        phoneNumberTextField.setText(Integer.toString(selectedContact.getPhoneNumber()));
+        phoneNumberTextField.setText(selectedContact.getPhoneNumber());
         emailTextField.setText(selectedContact.getEmail());
         addressTextField.setText(selectedContact.getAddress());
         facebookTextField.setText(selectedContact.getFacebook());

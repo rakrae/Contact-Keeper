@@ -14,8 +14,6 @@ import javafx.stage.Stage;
 import model.Account;
 
 public class EditAccountController extends BaseController {
-	
-	String passwordRegex = RGX;
 
     @FXML
     private ResourceBundle resources;
@@ -74,7 +72,7 @@ public class EditAccountController extends BaseController {
 		if (!oldPassword.isEmpty() || !newPassword.isEmpty() || !reEnteredPassword.isEmpty()) {
 			
 			// checks if the new password also matches regex
-			if(!newPassword.matches(RGX)) {
+			if(!newPassword.matches(PASSWORD_REGEX)) {
 				alertPassword();
 	            return;
 			}

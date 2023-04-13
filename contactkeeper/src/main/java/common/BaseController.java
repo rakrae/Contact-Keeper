@@ -28,8 +28,8 @@ import model.Account;
 public class BaseController {
 	
 	//Regular expression used for passwords
-	public static final String RGX = "^(?!.*\\\\s)(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#&()–[{}]:;',?/*~$^+=<>]).{8,20}$";
-	
+	public static final String PASSWORD_REGEX = "^(?!.*\\\\s)(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#&()–[{}]:;',?/*~$^+=<>]).{8,20}$";
+		
 	private static final String FXML_BASE_PATH = "/fxml/";
 
     public static final String PERSISTANCE_NAME_LOGIN = FXML_BASE_PATH + "Login.fxml";

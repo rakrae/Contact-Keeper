@@ -26,7 +26,7 @@ public class Contact {
 
 	private String address;
 
-	private int phoneNumber;
+	private String phoneNumber;
 
 	private String email;
 
@@ -44,7 +44,7 @@ public class Contact {
 	}
 
 	public Contact(String firstName, String lastName, String address,
-			int phoneNumber, String email, String facebook, String linkedIn, String instagram) {
+			String phoneNumber, String email, String facebook, String linkedIn, String instagram) {
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -88,12 +88,12 @@ public class Contact {
 		this.address = address;
 	}
 
-	public int getPhoneNumber() {
+	public String getPhoneNumber() {
 		return phoneNumber;
 	}
 
-	public void setPhoneNumber(int phoneNumber) {
-		this.phoneNumber = phoneNumber;
+	public void setPhoneNumber(String string) {
+		this.phoneNumber = string;
 	}
 
 	public String getEmail() {

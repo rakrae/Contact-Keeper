@@ -8,7 +8,7 @@ public class ContactTest {
 
   @Test
   public void testContactProperties() {
-    Contact contact = new Contact("John", "Doe", "123 Main St", 1234567890, "johndoe@example.com", "johndoe", "johndoe", "johndoe");
+    Contact contact = new Contact("John", "Doe", "123 Main St", "1234567890", "johndoe@example.com", "johndoe", "johndoe", "johndoe");
     assertEquals("John", contact.getFirstName());
     assertEquals("Doe", contact.getLastName());
     assertEquals("123 Main St", contact.getAddress());

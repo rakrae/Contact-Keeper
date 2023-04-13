@@ -60,6 +60,9 @@ public class AccountController extends BaseController {
 
     @FXML
     void handleDeleteAccountPressed(ActionEvent event) {
+    	/*The user will be allerted after pressing delete if it is sure that
+    	 * it wants to delete the account
+    	 */
     	Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirm Delete");
         alert.setHeaderText("Are you sure you want to delete this account?");

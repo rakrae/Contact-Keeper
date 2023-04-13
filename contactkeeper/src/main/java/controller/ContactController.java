@@ -85,7 +85,7 @@ public class ContactController extends BaseController {
 		Contact selectedContact = ApplicationContext.getSelectedContact();
 		if (selectedContact != null) {
 			firstNameTextField.setText(selectedContact.getFirstName());
-			lastNameTextField.setText(selectedContact.getLastName());
+			lastNameTextField.setText(selectedContact.getLastName());			
 			phoneNumberTextField.setText(String.valueOf(selectedContact.getPhoneNumber()));
 			emailTextField.setText(selectedContact.getEmail());
 			addressTextField.setText(selectedContact.getAddress());
