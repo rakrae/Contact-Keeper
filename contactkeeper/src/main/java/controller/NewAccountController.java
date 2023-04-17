@@ -4,6 +4,8 @@ import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
+import org.mindrot.jbcrypt.BCrypt;
+
 import javafx.scene.control.Button;
 import common.BaseController;
 import javafx.event.ActionEvent;
@@ -136,7 +138,8 @@ public class NewAccountController extends BaseController {
         }
 
         int age = Integer.parseInt(ageText);
-        Account newAccount = new Account(userName, password, firstName, lastName, gender, age);
+        String hashedPassword = BCrypt.hashpw(password, BCrypt.gensalt());
+        Account newAccount = new Account(userName, hashedPassword, firstName, lastName, gender, age);
         newAccount = accountRepository.save(newAccount);
         
         setLoggedInAccount(newAccount);

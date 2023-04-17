@@ -40,7 +40,7 @@ public interface CrudRepository<T, ID> {
      * @return The number of entities in the repository.
      */
     long count();
-
+    
     /**
      * Deletes the entity with the given ID.
      *

@@ -24,6 +24,8 @@ public class Contact {
 	@Column(name = "last_name")
 	private String lastName;
 
+	// Geburtsdatum
+	
 	private String address;
 
 	private String phoneNumber;

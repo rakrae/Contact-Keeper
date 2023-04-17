@@ -37,16 +37,14 @@ public class Account {
 
 	private int age;
 
-	@OneToMany(targetEntity = Contact.class, mappedBy = "account",
-			cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(targetEntity = Contact.class, mappedBy = "account", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Contact> contacts = new ArrayList<>();
 
 	public Account() {
 		super();
 	}
 
-	public Account(String userName, String password, String firstName,
-			String lastName, String gender, int age) {
+	public Account(String userName, String password, String firstName, String lastName, String gender, int age) {
 		super();
 		this.userName = userName;
 		this.password = password;
@@ -123,12 +121,12 @@ public class Account {
 
 	public void addContact(Contact contact) {
 		contacts.add(contact);
-	    contact.setAccount(this);
+		contact.setAccount(this);
 	}
 
 	public void removeContact(Contact contact) {
-	    contacts.remove(contact);
-	    contact.setAccount(null);
+		contacts.remove(contact);
+		contact.setAccount(null);
 	}
 
 	@Override

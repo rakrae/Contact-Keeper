@@ -4,6 +4,8 @@ import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
+import org.mindrot.jbcrypt.BCrypt;
+
 import common.BaseController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -61,15 +63,28 @@ public class LoginController extends BaseController {
 		return !userName.isEmpty() && !password.isEmpty();
 	}
 
+//	private void attemptLogin(String userName, String password) {
+//		Optional<Account> optAccount = accountRepository.findByUserName(userName);
+//		if (optAccount.isPresent() && optAccount.get().getPassword().equals(password)) {
+//			setLoggedInAccount(optAccount.get());
+//			navigateTo(PERSISTANCE_NAME_ACCOUNT, (Stage) userNameTextField.getScene().getWindow());
+//		} else {
+//			invalidCredentialsLabel.setText("Invalid username or password.");
+//		}
+//    }
+	
 	private void attemptLogin(String userName, String password) {
-		Optional<Account> optAccount = accountRepository.findByUserName(userName);
-		if (optAccount.isPresent() && optAccount.get().getPassword().equals(password)) {
-			setLoggedInAccount(optAccount.get());
-			navigateTo(PERSISTANCE_NAME_ACCOUNT, (Stage) userNameTextField.getScene().getWindow());
-		} else {
-			invalidCredentialsLabel.setText("Invalid username or password.");
-		}
-    }
+	    Optional<Account> optAccount = accountRepository.findByUserName(userName);
+	    if (optAccount.isPresent()) {
+	        String hashedPassword = optAccount.get().getPassword();
+	        if (BCrypt.checkpw(password, hashedPassword)) {
+	            setLoggedInAccount(optAccount.get());
+	            navigateTo(PERSISTANCE_NAME_ACCOUNT, (Stage) userNameTextField.getScene().getWindow());
+	            return;
+	        }
+	    }
+	    invalidCredentialsLabel.setText("Invalid username or password.");
+	}
 
     @FXML
     void handleNewAccountPressed(ActionEvent event) {
