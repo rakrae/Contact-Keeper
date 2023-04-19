@@ -23,12 +23,14 @@ public class DatabaseCreator {
                 Contact ct = new Contact(
                         "FirstName" + i,
                         "LastName" + i,
+                        "01.01.2005" + i,
                         i + " Disney Street",
                         "1000000000" + i,
                         "Email" + i + "@example.com",
                         "Facebook" + i,
                         "Instagram" + i,
-                        "LinkedIn" + i
+                        "LinkedIn" + i,
+                        " " + i
                 );
                 ac.addContact(ct);
             }

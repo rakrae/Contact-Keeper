@@ -2,10 +2,13 @@ package application;
 
 import model.Account;
 import model.Contact;
+import model.Photo;
 import repository.AccountRepository;
 import repository.AccountRepositoryJPA;
 import repository.ContactRepository;
 import repository.ContactRepositoryJPA;
+import repository.PhotoRepository;
+import repository.PhotoRepositoryJPA;
 
 public class ApplicationContext {
 
@@ -13,14 +16,18 @@ public class ApplicationContext {
 
     private final AccountRepository accountRepository;
     private final ContactRepository contactRepository;
+    private final PhotoRepository photoRepository;
     
     private static Account loggedInAccount;
     
     private static Contact selectedContact;
 
+    private static Photo selectedPhoto;
+    
     private ApplicationContext() {
         accountRepository = new AccountRepositoryJPA();
         contactRepository = new ContactRepositoryJPA();
+        photoRepository = new PhotoRepositoryJPA();
     }
 
     public static ApplicationContext getInstance() {
@@ -38,6 +45,10 @@ public class ApplicationContext {
         return getInstance().contactRepository;
     }
     
+    public static PhotoRepository getPhotoRepository() {
+    	return getInstance().photoRepository;
+    }
+    
     public static Account getLoggedInAccount() {
         return loggedInAccount;
     }
@@ -53,4 +64,13 @@ public class ApplicationContext {
     public static void setSelectedContact(Contact contact) {
         selectedContact = contact;
     }
+
+	public static Photo getSelectedPhoto() {
+		return selectedPhoto;
+	}
+
+	public static void setSelectedPhoto(Photo selectedPhoto) {
+		ApplicationContext.selectedPhoto = selectedPhoto;
+	}
+    
 }

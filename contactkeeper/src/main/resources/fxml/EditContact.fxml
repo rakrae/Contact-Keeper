@@ -46,6 +46,11 @@
                               <Font name="Arial Bold" size="18.0" />
                            </font>
                         </Label>
+                        <Label text="Birthday:" textFill="WHITE">
+                           <font>
+                              <Font name="Arial Bold" size="18.0" />
+                           </font>
+                        </Label>
                         <Label text="Address:" textFill="WHITE">
                            <font>
                               <Font name="Arial Bold" size="18.0" />
@@ -97,6 +102,11 @@
                            </font>
                         </TextField>
                         <TextField fx:id="lastNameTextField" opacity="0.7" promptText="Last name">
+                           <font>
+                              <Font name="Arial Bold" size="12.0" />
+                           </font>
+                        </TextField>
+                        <TextField fx:id="birthdayTextField" opacity="0.7" promptText="Birthday">
                            <font>
                               <Font name="Arial Bold" size="12.0" />
                            </font>

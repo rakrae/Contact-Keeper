@@ -2,11 +2,10 @@ package common;
 
 import repository.AccountRepository;
 import repository.ContactRepository;
+import repository.PhotoRepository;
 
 import java.io.IOException;
 import java.lang.reflect.Field;
-
-import org.hibernate.mapping.Component;
 
 import application.ApplicationContext;
 import javafx.fxml.FXML;
@@ -40,13 +39,16 @@ public class BaseController {
     public static final String PERSISTANCE_NAME_CONTACT = FXML_BASE_PATH + "Contact.fxml";
     public static final String PERSISTANCE_NAME_NEWCONTACT = FXML_BASE_PATH + "NewContact.fxml";
     public static final String PERSISTANCE_NAME_EDITCONTACT = FXML_BASE_PATH + "EditContact.fxml";
+    public static final String PERSISTANCE_NAME_PHOTO = FXML_BASE_PATH + "Photo.fxml";
 
     protected final AccountRepository accountRepository;
     protected final ContactRepository contactRepository;
+    protected final PhotoRepository photoRepository;
 
     public BaseController() {
         accountRepository = ApplicationContext.getAccountRepository();
         contactRepository = ApplicationContext.getContactRepository();
+        photoRepository = ApplicationContext.getPhotoRepository();
     }
     
     protected void navigateTo(String fxmlPath, Stage currentStage) {
@@ -70,6 +72,7 @@ public class BaseController {
         ApplicationContext.setLoggedInAccount(account);
     }
     
+    //Alert for the password, it checks if it respects the regex
     public void alertPassword() {
     	Alert alert = new Alert(AlertType.ERROR);
     	alert.setTitle("Error");

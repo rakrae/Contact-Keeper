@@ -23,6 +23,9 @@ public class NewContactController extends BaseController {
 
     @FXML
     private TextField addressTextField;
+    
+    @FXML
+    private TextField birthdayTextField;
 
     @FXML
     private Button close;
@@ -64,15 +67,18 @@ public class NewContactController extends BaseController {
     
     private void createAndSaveNewContact() {
     	
+    	// Comment set initially to ""
         Contact newContact = new Contact(
                 firstNameTextField.getText(),
                 lastNameTextField.getText(),
+                birthdayTextField.getText(),
                 addressTextField.getText(),
                 phoneNumberTextField.getText(),
                 emailTextField.getText(),
                 facebookTextField.getText(),
                 linkedInTextField.getText(),
-                instagramTextField.getText());
+                instagramTextField.getText(),
+                "");
 
         newContact.setAccount(getLoggedInAccount());
         contactRepository.save(newContact);
@@ -86,6 +92,7 @@ public class NewContactController extends BaseController {
     @FXML
     void initialize() {
         assert addressTextField != null : "fx:id=\"addressTextField\" was not injected: check your FXML file 'NewContact.fxml'.";
+        assert birthdayTextField != null : "fx:id=\"birthdayTextField\" was not injected: check your FXML file 'NewContact.fxml'.";
         assert close != null : "fx:id=\"close\" was not injected: check your FXML file 'NewContact.fxml'.";
         assert emailTextField != null : "fx:id=\"emailTextField\" was not injected: check your FXML file 'NewContact.fxml'.";
         assert facebookTextField != null : "fx:id=\"facebookTextField\" was not injected: check your FXML file 'NewContact.fxml'.";

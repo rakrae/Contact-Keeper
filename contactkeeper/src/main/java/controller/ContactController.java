@@ -1,30 +1,60 @@
 package controller;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.io.FileOutputStream;
 import application.ApplicationContext;
 import common.BaseController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import model.Contact;
+import model.Photo;
 
 public class ContactController extends BaseController {
+	
+	//Second of selectedContact to update the comment
+	Contact selectedContact = ApplicationContext.getSelectedContact();
 
 	@FXML
 	private ResourceBundle resources;
 
 	@FXML
 	private URL location;
+	
+    @FXML
+    private Button addComment;
 
 	@FXML
 	private Label addressTextField;
 
 	@FXML
 	private Button back;
+	
+    @FXML
+    private Label birthdayTextField;
+	
+	@FXML
+    private Label commentLabel;
+
+    @FXML
+    private TextField commentTextField;
+    
+    @FXML
+    private Button deleteComment;
 
 	@FXML
 	private Button editContact;
@@ -49,67 +79,154 @@ public class ContactController extends BaseController {
 
 	@FXML
 	private Label phoneNumberTextField;
+	
+    @FXML
+    private Button photo;
+	
+    @FXML
+    void handleAddCommentPressed(ActionEvent event) {
+    	//update the comment
+    	updateComment();
+    }
 
 	@FXML
 	void handleBackPressed(ActionEvent event) {
 		navigateTo(PERSISTANCE_NAME_CONTACTS, (Stage) back.getScene().getWindow());
 	}
-
+	
+    @FXML
+    void handleDeleteCommentPressed(ActionEvent event) {
+    	//set the comment to null
+    	deleteComment(); 
+    }
 
 	@FXML
 	void handleEditContactPressed(ActionEvent event) {
 		navigateTo(PERSISTANCE_NAME_EDITCONTACT, (Stage) back.getScene().getWindow());
 	}
+	
+    @FXML
+    void handlePhotoPressed(ActionEvent event) {
+    	
+    	String filePath = "C:\\Users\\bihun\\git\\Contact-Keeper\\contactkeeper\\src\\main\\resources\\images";
+        Path path = Paths.get(filePath); 
+        byte[] data;
+		try {
+			data = Files.readAllBytes(path);
+	    	String dummyPhoto = "Dice";
+	    	savePhoto(data, dummyPhoto, selectedContact);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+    	
+    	navigateTo( PERSISTANCE_NAME_PHOTO, (Stage) back.getScene().getWindow());
+    }
 
 	@FXML
 	void initialize() {
-		assert addressTextField != null
-				: "fx:id=\"addressTextField\" was not injected: check your FXML file 'Contact.fxml'.";
-		assert back != null : "fx:id=\"back\" was not injected: check your FXML file 'Contact.fxml'.";
-		assert editContact != null : "fx:id=\"editContact\" was not injected: check your FXML file 'Contact.fxml'.";
-		assert emailTextField != null
-				: "fx:id=\"emailTextField\" was not injected: check your FXML file 'Contact.fxml'.";
-		assert facebookTextField != null
-				: "fx:id=\"facebookTextField\" was not injected: check your FXML file 'Contact.fxml'.";
-		assert firstNameTextField != null
-				: "fx:id=\"firstNameTextField\" was not injected: check your FXML file 'Contact.fxml'.";
-		assert instagramTextField != null
-				: "fx:id=\"instagramTextField\" was not injected: check your FXML file 'Contact.fxml'.";
-		assert lastNameTextField != null
-				: "fx:id=\"lastNameTextField\" was not injected: check your FXML file 'Contact.fxml'.";
-		assert linkedInTextField != null
-				: "fx:id=\"linkedInTextField\" was not injected: check your FXML file 'Contact.fxml'.";
-		assert phoneNumberTextField != null
-				: "fx:id=\"phoneNumberTextField\" was not injected: check your FXML file 'Contact.fxml'.";
+		   assert addComment != null : "fx:id=\"addComment\" was not injected: check your FXML file 'Contact.fxml'.";
+	        assert addressTextField != null : "fx:id=\"addressTextField\" was not injected: check your FXML file 'Contact.fxml'.";
+	        assert back != null : "fx:id=\"back\" was not injected: check your FXML file 'Contact.fxml'.";
+	        assert birthdayTextField != null : "fx:id=\"birthdayTextField\" was not injected: check your FXML file 'Contact.fxml'.";
+	        assert commentLabel != null : "fx:id=\"commentLabel\" was not injected: check your FXML file 'Contact.fxml'.";
+	        assert commentTextField != null : "fx:id=\"commentTextField\" was not injected: check your FXML file 'Contact.fxml'.";
+	        assert deleteComment != null : "fx:id=\"deleteComment\" was not injected: check your FXML file 'Contact.fxml'.";
+	        assert editContact != null : "fx:id=\"editContact\" was not injected: check your FXML file 'Contact.fxml'.";
+	        assert emailTextField != null : "fx:id=\"emailTextField\" was not injected: check your FXML file 'Contact.fxml'.";
+	        assert facebookTextField != null : "fx:id=\"facebookTextField\" was not injected: check your FXML file 'Contact.fxml'.";
+	        assert firstNameTextField != null : "fx:id=\"firstNameTextField\" was not injected: check your FXML file 'Contact.fxml'.";
+	        assert instagramTextField != null : "fx:id=\"instagramTextField\" was not injected: check your FXML file 'Contact.fxml'.";
+	        assert lastNameTextField != null : "fx:id=\"lastNameTextField\" was not injected: check your FXML file 'Contact.fxml'.";
+	        assert linkedInTextField != null : "fx:id=\"linkedInTextField\" was not injected: check your FXML file 'Contact.fxml'.";
+	        assert phoneNumberTextField != null : "fx:id=\"phoneNumberTextField\" was not injected: check your FXML file 'Contact.fxml'.";
+	        assert photo != null : "fx:id=\"photo\" was not injected: check your FXML file 'Contact.fxml'.";
 		
+	        //First use of selectedContact for initialization 
 		Contact selectedContact = ApplicationContext.getSelectedContact();
 		if (selectedContact != null) {
 			firstNameTextField.setText(selectedContact.getFirstName());
-			lastNameTextField.setText(selectedContact.getLastName());			
+			lastNameTextField.setText(selectedContact.getLastName());
+			birthdayTextField.setText(selectedContact.getBirthday());			
 			phoneNumberTextField.setText(String.valueOf(selectedContact.getPhoneNumber()));
 			emailTextField.setText(selectedContact.getEmail());
 			addressTextField.setText(selectedContact.getAddress());
 			facebookTextField.setText(selectedContact.getFacebook());
 			instagramTextField.setText(selectedContact.getInstagram());
 			linkedInTextField.setText(selectedContact.getLinkedIn());
+			commentLabel.setText(selectedContact.getComment());
 		}
 		
-
 	}
 	
 	public void setContact(Contact contact) {
 		if (contact != null) {
 			firstNameTextField.setText(contact.getFirstName());
 			lastNameTextField.setText(contact.getLastName());
+			birthdayTextField.setText(contact.getBirthday());;
 			phoneNumberTextField.setText(String.valueOf(contact.getPhoneNumber()));
 			emailTextField.setText(contact.getEmail());
 			addressTextField.setText(contact.getAddress());
 			facebookTextField.setText(contact.getFacebook());
 			instagramTextField.setText(contact.getInstagram());
 			linkedInTextField.setText(contact.getLinkedIn());
+			commentLabel.setText(contact.getComment());
 		}
 	}
 
+	public void updateComment() {
+		
+		Contact contact = ApplicationContext.getSelectedContact();
+		if(!commentTextField.getText().isEmpty()) {
+			contact.setComment(commentTextField.getText());
+			commentLabel.setText(commentTextField.getText());
+			
+			contactRepository.update(contact);
+			
+			commentTextField.setText("");
+		} else {
+			commentTextField.setText("");
+		}
+	}
+	
+	public void deleteComment() {
+		
+		Contact contact = ApplicationContext.getSelectedContact();
+		if(!commentLabel.getText().isEmpty()) {
+			contact.setComment("");
+			commentLabel.setText("");
+			
+			contactRepository.update(contact);
+			
+			commentTextField.setText("");
+		} else {
+			commentTextField.setText("");
+		}
+	}
+	
+	public void savePhoto(byte[] photoData, String filename, Contact contact) {
+	    if (photoData == null || photoData.length == 0) {
+	        throw new IllegalArgumentException("Photo data cannot be null or empty");
+	    }
+	    
+	    if (filename == null || filename.isEmpty()) {
+	        throw new IllegalArgumentException("Filename cannot be null or empty");
+	    }
+	    
+	    if (contact == null) {
+	        throw new IllegalArgumentException("Contact cannot be null");
+	    }
+	    
+	    try (FileOutputStream fos = new FileOutputStream(filename)) {
+	        fos.write(photoData);
+	        Photo photo = new Photo(photoData, filename);
+			selectedContact.addPhoto(photoData, filename);
+	        photo.setContact(contact);
+	        ApplicationContext.getPhotoRepository().save(photo);
+	    } catch (IOException ex) {
+	        // Handle the exception as appropriate
+	    }
+	}
+
 }
-
-
+	

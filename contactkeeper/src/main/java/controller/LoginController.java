@@ -62,17 +62,10 @@ public class LoginController extends BaseController {
 	private boolean validateLoginInput(String userName, String password) {
 		return !userName.isEmpty() && !password.isEmpty();
 	}
-
-//	private void attemptLogin(String userName, String password) {
-//		Optional<Account> optAccount = accountRepository.findByUserName(userName);
-//		if (optAccount.isPresent() && optAccount.get().getPassword().equals(password)) {
-//			setLoggedInAccount(optAccount.get());
-//			navigateTo(PERSISTANCE_NAME_ACCOUNT, (Stage) userNameTextField.getScene().getWindow());
-//		} else {
-//			invalidCredentialsLabel.setText("Invalid username or password.");
-//		}
-//    }
 	
+	/* checks if there is the certain account in the data base and verifies the
+	 * account and password if they match
+	 */
 	private void attemptLogin(String userName, String password) {
 	    Optional<Account> optAccount = accountRepository.findByUserName(userName);
 	    if (optAccount.isPresent()) {
@@ -80,10 +73,10 @@ public class LoginController extends BaseController {
 	        if (BCrypt.checkpw(password, hashedPassword)) {
 	            setLoggedInAccount(optAccount.get());
 	            navigateTo(PERSISTANCE_NAME_ACCOUNT, (Stage) userNameTextField.getScene().getWindow());
-	            return;
-	        }
-	    }
-	    invalidCredentialsLabel.setText("Invalid username or password.");
+	        } else {
+	    	    invalidCredentialsLabel.setText("Invalid username or password.");
+		    }
+	    } 
 	}
 
     @FXML

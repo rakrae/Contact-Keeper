@@ -3,6 +3,8 @@ package controller;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import org.mindrot.jbcrypt.BCrypt;
+
 import common.BaseController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -76,8 +78,11 @@ public class EditAccountController extends BaseController {
 				alertPassword();
 	            return;
 			}
+			
+			// checks the validity of the entered passwords and it hashes the new one
             if (validatePasswordChange(oldPassword, newPassword, reEnteredPassword, loggedInAccount)) {
-                loggedInAccount.setPassword(newPassword);
+            	String newHashedPassword = BCrypt.hashpw(newPassword, BCrypt.gensalt());
+                loggedInAccount.setPassword(newHashedPassword);
             } else {
                 errorLabelMessages.setText("Password change validation failed.");
                 return;
@@ -88,13 +93,20 @@ public class EditAccountController extends BaseController {
 		navigateTo(PERSISTANCE_NAME_ACCOUNT, (Stage) saveChanges.getScene().getWindow());
 	}
 
+    // checks the validity of the password with the one from database hashed
 	private boolean validatePasswordChange(String oldPassword, String newPassword, String reEnteredPassword,
 			Account loggedInAccount) {
 		if (oldPassword.isEmpty() || newPassword.isEmpty() || !newPassword.equals(reEnteredPassword)) {
             return false;
 		}
+		
+		String hashedPassword = loggedInAccount.getPassword();
+		
+		if (!BCrypt.checkpw(oldPassword, hashedPassword)) {
+	        return false;
+	    }
 
-		return loggedInAccount.getPassword().equals(oldPassword);
+		return true;
 	}
 
     @FXML

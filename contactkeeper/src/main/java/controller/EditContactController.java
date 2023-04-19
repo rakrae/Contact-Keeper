@@ -22,6 +22,9 @@ public class EditContactController extends BaseController {
 
     @FXML
     private TextField addressTextField;
+    
+    @FXML
+    private TextField birthdayTextField;
 
     @FXML
     private Button close;
@@ -60,6 +63,7 @@ public class EditContactController extends BaseController {
     @FXML
     void handleSaveChangesPressed(ActionEvent event) {
     	
+    	selectedContact.setBirthday(birthdayTextField.getText());
     	selectedContact.setAddress(addressTextField.getText());
         selectedContact.setEmail(emailTextField.getText());
         selectedContact.setFacebook(facebookTextField.getText());
@@ -76,6 +80,7 @@ public class EditContactController extends BaseController {
     @FXML
     void initialize() {
         assert addressTextField != null : "fx:id=\"addressTextField\" was not injected: check your FXML file 'EditContact.fxml'.";
+        assert birthdayTextField != null : "fx:id=\"birthdayTextField\" was not injected: check your FXML file 'EditContact.fxml'.";
         assert close != null : "fx:id=\"close\" was not injected: check your FXML file 'EditContact.fxml'.";
         assert emailTextField != null : "fx:id=\"emailTextField\" was not injected: check your FXML file 'EditContact.fxml'.";
         assert facebookTextField != null : "fx:id=\"facebookTextField\" was not injected: check your FXML file 'EditContact.fxml'.";
@@ -87,7 +92,8 @@ public class EditContactController extends BaseController {
         assert saveChanges != null : "fx:id=\"saveChanges\" was not injected: check your FXML file 'EditContact.fxml'.";
 
         selectedContact = ApplicationContext.getSelectedContact();
-
+        
+        birthdayTextField.setText(selectedContact.getBirthday());
         firstNameTextField.setText(selectedContact.getFirstName());
         lastNameTextField.setText(selectedContact.getLastName());
         phoneNumberTextField.setText(selectedContact.getPhoneNumber());
