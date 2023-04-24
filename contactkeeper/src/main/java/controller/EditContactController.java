@@ -8,6 +8,7 @@ import common.BaseController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import model.Contact;
@@ -37,6 +38,9 @@ public class EditContactController extends BaseController {
 
     @FXML
     private TextField firstNameTextField;
+    
+    @FXML
+    private ChoiceBox<String> genderChoiceBox;
 
     @FXML
     private TextField instagramTextField;
@@ -68,6 +72,7 @@ public class EditContactController extends BaseController {
         selectedContact.setEmail(emailTextField.getText());
         selectedContact.setFacebook(facebookTextField.getText());
         selectedContact.setFirstName(firstNameTextField.getText());
+        selectedContact.setGender(genderChoiceBox.getSelectionModel().getSelectedItem());
         selectedContact.setInstagram(instagramTextField.getText());
         selectedContact.setLastName(lastNameTextField.getText());
         selectedContact.setLinkedIn(linkedInTextField.getText());
@@ -85,17 +90,26 @@ public class EditContactController extends BaseController {
         assert emailTextField != null : "fx:id=\"emailTextField\" was not injected: check your FXML file 'EditContact.fxml'.";
         assert facebookTextField != null : "fx:id=\"facebookTextField\" was not injected: check your FXML file 'EditContact.fxml'.";
         assert firstNameTextField != null : "fx:id=\"firstNameTextField\" was not injected: check your FXML file 'EditContact.fxml'.";
+        assert genderChoiceBox != null : "fx:id=\"genderChoiceBox\" was not injected: check your FXML file 'EditContact.fxml'.";
         assert instagramTextField != null : "fx:id=\"instagramTextField\" was not injected: check your FXML file 'EditContact.fxml'.";
         assert lastNameTextField != null : "fx:id=\"lastNameTextField\" was not injected: check your FXML file 'EditContact.fxml'.";
         assert linkedInTextField != null : "fx:id=\"linkedInTextField\" was not injected: check your FXML file 'EditContact.fxml'.";
         assert phoneNumberTextField != null : "fx:id=\"phoneNumberTextField\" was not injected: check your FXML file 'EditContact.fxml'.";
         assert saveChanges != null : "fx:id=\"saveChanges\" was not injected: check your FXML file 'EditContact.fxml'.";
 
+        genderChoiceBox.getItems().addAll("Male", "Female");
+        
         selectedContact = ApplicationContext.getSelectedContact();
         
         birthdayTextField.setText(selectedContact.getBirthday());
         firstNameTextField.setText(selectedContact.getFirstName());
         lastNameTextField.setText(selectedContact.getLastName());
+        
+        String selectedGender = selectedContact.getGender();
+        if(selectedGender != null) {
+        	genderChoiceBox.setValue(selectedGender);
+        }
+        
         phoneNumberTextField.setText(selectedContact.getPhoneNumber());
         emailTextField.setText(selectedContact.getEmail());
         addressTextField.setText(selectedContact.getAddress());

@@ -9,10 +9,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
+@NamedQuery(name = "readAllContacts", query = "select c from Contact c")
 @Table(name = "contacts")
 public class Contact {
 
@@ -26,6 +28,8 @@ public class Contact {
 
 	@Column(name = "last_name")
 	private String lastName;
+	
+	private String gender;
 
 	private String birthday;
 	
@@ -44,7 +48,7 @@ public class Contact {
 	@Column(name = "comment")
 	private String comment;
 	
-    @OneToOne(targetEntity = Photo.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToOne(targetEntity = Photo.class, mappedBy = "contact", cascade = CascadeType.ALL, orphanRemoval = true)
     private Photo photo;
 
 	@ManyToOne(fetch = FetchType.LAZY)
@@ -54,11 +58,12 @@ public class Contact {
 	public Contact() {
 	}
 
-	public Contact(String firstName, String lastName,String birthday, String address,
+	public Contact(String firstName, String lastName,String gender, String birthday, String address,
 			String phoneNumber, String email, String facebook, String linkedIn, String instagram, String comment) {
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
+		this.gender = gender;
 		this.birthday = birthday;
 		this.address = address;
 		this.phoneNumber = phoneNumber;
@@ -91,6 +96,14 @@ public class Contact {
 
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
+	}
+
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
 	}
 
 	public String getBirthday() {
@@ -196,9 +209,10 @@ public class Contact {
 
 	@Override
 	public String toString() {
-		return "Contact [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", address=" + address
-				+ ", phoneNumber=" + phoneNumber + ", email=" + email + ", facebook=" + facebook + ", linkedIn="
-				+ linkedIn + ", instagram=" + instagram + ", comment=" + comment + ", account=" + account + "]";
+		return "Contact [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", gender=" + gender
+				+ ", birthday=" + birthday + ", address=" + address + ", phoneNumber=" + phoneNumber + ", email="
+				+ email + ", facebook=" + facebook + ", linkedIn=" + linkedIn + ", instagram=" + instagram
+				+ ", comment=" + comment + ", photo=" + photo + ", account=" + account + "]";
 	}
 
 }

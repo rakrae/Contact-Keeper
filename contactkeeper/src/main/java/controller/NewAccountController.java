@@ -7,6 +7,7 @@ import java.util.ResourceBundle;
 import org.mindrot.jbcrypt.BCrypt;
 
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import common.BaseController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -40,7 +41,7 @@ public class NewAccountController extends BaseController {
     private TextField firstNameTextField;
 
     @FXML
-    private TextField genderTextField;
+    private ChoiceBox<String> genderChoiceBox;
 
     @FXML
     private TextField lastNameTextField;
@@ -66,7 +67,7 @@ public class NewAccountController extends BaseController {
          String lastName = lastNameTextField.getText();
          String password = passwordTextField.getText();
          String reenterPassword = reenterPasswordTextField.getText();
-         String gender = genderTextField.getText();
+         String gender = genderChoiceBox.getSelectionModel().getSelectedItem();
          String ageText = ageTextField.getText();
 
          validateAndCreateAccount(userName, firstName, lastName, password, reenterPassword, gender, ageText);
@@ -166,11 +167,12 @@ public class NewAccountController extends BaseController {
         assert cancelCreate != null : "fx:id=\"cancelCreate\" was not injected: check your FXML file 'NewAccount.fxml'.";
         assert createNewAccount != null : "fx:id=\"createNewAccount\" was not injected: check your FXML file 'NewAccount.fxml'.";
         assert firstNameTextField != null : "fx:id=\"firstNameTextField\" was not injected: check your FXML file 'NewAccount.fxml'.";
-        assert genderTextField != null : "fx:id=\"genderTextField\" was not injected: check your FXML file 'NewAccount.fxml'.";
+        assert genderChoiceBox != null : "fx:id=\"genderChoiceBox\" was not injected: check your FXML file 'NewAccount.fxml'.";
         assert lastNameTextField != null : "fx:id=\"lastNameTextField\" was not injected: check your FXML file 'NewAccount.fxml'.";
         assert passwordTextField != null : "fx:id=\"passwordTextField\" was not injected: check your FXML file 'NewAccount.fxml'.";
         assert reenterPasswordTextField != null : "fx:id=\"reenterPasswordTextField\" was not injected: check your FXML file 'NewAccount.fxml'.";
-
+        
+        genderChoiceBox.getItems().addAll("Male", "Female");
     }
 
 }

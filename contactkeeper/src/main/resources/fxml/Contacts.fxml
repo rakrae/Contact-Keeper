@@ -42,9 +42,9 @@
                   <TableView fx:id="contactsView" opacity="0.9" prefHeight="237.0" prefWidth="405.0">
                     <columns>
                       <TableColumn fx:id="firstNameColumn" minWidth="0.0" prefWidth="100.0" text="First Name" />
-                      <TableColumn fx:id="lastNameColumn" minWidth="0.0" prefWidth="100.0" text="Last Name" />
-                      <TableColumn fx:id="phoneNumberColumn" minWidth="0.0" prefWidth="100.0" text="Phone Number" />
-                      <TableColumn fx:id="deleteColumn" minWidth="0.0" prefWidth="100.0" />
+                      <TableColumn fx:id="lastNameColumn" minWidth="0.0" prefWidth="112.6666259765625" text="Last Name" />
+                      <TableColumn fx:id="phoneNumberColumn" minWidth="0.0" prefWidth="123.33335876464844" text="Phone Number" />
+                      <TableColumn fx:id="deleteColumn" minWidth="0.0" prefWidth="63.99993896484375" />
                     </columns>
                      <VBox.margin>
                         <Insets bottom="20.0" left="40.0" right="40.0" top="30.0" />

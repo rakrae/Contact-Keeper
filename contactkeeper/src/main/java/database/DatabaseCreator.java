@@ -23,6 +23,7 @@ public class DatabaseCreator {
                 Contact ct = new Contact(
                         "FirstName" + i,
                         "LastName" + i,
+                        "Gender" + i,
                         "01.01.2005" + i,
                         i + " Disney Street",
                         "1000000000" + i,

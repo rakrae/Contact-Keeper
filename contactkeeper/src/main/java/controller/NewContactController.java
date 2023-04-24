@@ -9,6 +9,7 @@ import common.BaseController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import model.Contact;
@@ -38,6 +39,9 @@ public class NewContactController extends BaseController {
 
     @FXML
     private TextField firstNameTextField;
+    
+    @FXML
+    private ChoiceBox<String> genderChoiceBox;
 
     @FXML
     private TextField instagramTextField;
@@ -71,6 +75,7 @@ public class NewContactController extends BaseController {
         Contact newContact = new Contact(
                 firstNameTextField.getText(),
                 lastNameTextField.getText(),
+                genderChoiceBox.getSelectionModel().getSelectedItem(),
                 birthdayTextField.getText(),
                 addressTextField.getText(),
                 phoneNumberTextField.getText(),
@@ -97,11 +102,14 @@ public class NewContactController extends BaseController {
         assert emailTextField != null : "fx:id=\"emailTextField\" was not injected: check your FXML file 'NewContact.fxml'.";
         assert facebookTextField != null : "fx:id=\"facebookTextField\" was not injected: check your FXML file 'NewContact.fxml'.";
         assert firstNameTextField != null : "fx:id=\"firstNameTextField\" was not injected: check your FXML file 'NewContact.fxml'.";
+        assert genderChoiceBox != null : "fx:id=\"genderChoiceBox\" was not injected: check your FXML file 'NewContact.fxml'.";
         assert instagramTextField != null : "fx:id=\"instagramTextField\" was not injected: check your FXML file 'NewContact.fxml'.";
         assert lastNameTextField != null : "fx:id=\"lastNameTextField\" was not injected: check your FXML file 'NewContact.fxml'.";
         assert linkedInTextField != null : "fx:id=\"linkedInTextField\" was not injected: check your FXML file 'NewContact.fxml'.";
         assert phoneNumberTextField != null : "fx:id=\"phoneNumberTextField\" was not injected: check your FXML file 'NewContact.fxml'.";
         assert saveChanges != null : "fx:id=\"saveChanges\" was not injected: check your FXML file 'NewContact.fxml'.";
+    
+        genderChoiceBox.getItems().addAll("Male", "Female");
     }
 
 }

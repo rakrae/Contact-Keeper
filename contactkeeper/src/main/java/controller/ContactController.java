@@ -67,6 +67,9 @@ public class ContactController extends BaseController {
 
 	@FXML
 	private Label firstNameTextField;
+	
+    @FXML
+    private Label genderTextField;
 
 	@FXML
 	private Label instagramTextField;
@@ -107,19 +110,6 @@ public class ContactController extends BaseController {
 	
     @FXML
     void handlePhotoPressed(ActionEvent event) {
-    	
-    	String filePath = "C:\\Users\\bihun\\git\\Contact-Keeper\\contactkeeper\\src\\main\\resources\\images";
-        Path path = Paths.get(filePath); 
-        byte[] data;
-		try {
-			data = Files.readAllBytes(path);
-	    	String dummyPhoto = "Dice";
-	    	savePhoto(data, dummyPhoto, selectedContact);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} 
-    	
     	navigateTo( PERSISTANCE_NAME_PHOTO, (Stage) back.getScene().getWindow());
     }
 
@@ -136,6 +126,7 @@ public class ContactController extends BaseController {
 	        assert emailTextField != null : "fx:id=\"emailTextField\" was not injected: check your FXML file 'Contact.fxml'.";
 	        assert facebookTextField != null : "fx:id=\"facebookTextField\" was not injected: check your FXML file 'Contact.fxml'.";
 	        assert firstNameTextField != null : "fx:id=\"firstNameTextField\" was not injected: check your FXML file 'Contact.fxml'.";
+	        assert genderTextField != null : "fx:id=\"genderTextField\" was not injected: check your FXML file 'Contact.fxml'.";
 	        assert instagramTextField != null : "fx:id=\"instagramTextField\" was not injected: check your FXML file 'Contact.fxml'.";
 	        assert lastNameTextField != null : "fx:id=\"lastNameTextField\" was not injected: check your FXML file 'Contact.fxml'.";
 	        assert linkedInTextField != null : "fx:id=\"linkedInTextField\" was not injected: check your FXML file 'Contact.fxml'.";
@@ -147,6 +138,7 @@ public class ContactController extends BaseController {
 		if (selectedContact != null) {
 			firstNameTextField.setText(selectedContact.getFirstName());
 			lastNameTextField.setText(selectedContact.getLastName());
+			genderTextField.setText(selectedContact.getGender());
 			birthdayTextField.setText(selectedContact.getBirthday());			
 			phoneNumberTextField.setText(String.valueOf(selectedContact.getPhoneNumber()));
 			emailTextField.setText(selectedContact.getEmail());
@@ -163,7 +155,8 @@ public class ContactController extends BaseController {
 		if (contact != null) {
 			firstNameTextField.setText(contact.getFirstName());
 			lastNameTextField.setText(contact.getLastName());
-			birthdayTextField.setText(contact.getBirthday());;
+			genderTextField.setText(contact.getGender());;
+			birthdayTextField.setText(contact.getBirthday());
 			phoneNumberTextField.setText(String.valueOf(contact.getPhoneNumber()));
 			emailTextField.setText(contact.getEmail());
 			addressTextField.setText(contact.getAddress());
@@ -202,30 +195,6 @@ public class ContactController extends BaseController {
 		} else {
 			commentTextField.setText("");
 		}
-	}
-	
-	public void savePhoto(byte[] photoData, String filename, Contact contact) {
-	    if (photoData == null || photoData.length == 0) {
-	        throw new IllegalArgumentException("Photo data cannot be null or empty");
-	    }
-	    
-	    if (filename == null || filename.isEmpty()) {
-	        throw new IllegalArgumentException("Filename cannot be null or empty");
-	    }
-	    
-	    if (contact == null) {
-	        throw new IllegalArgumentException("Contact cannot be null");
-	    }
-	    
-	    try (FileOutputStream fos = new FileOutputStream(filename)) {
-	        fos.write(photoData);
-	        Photo photo = new Photo(photoData, filename);
-			selectedContact.addPhoto(photoData, filename);
-	        photo.setContact(contact);
-	        ApplicationContext.getPhotoRepository().save(photo);
-	    } catch (IOException ex) {
-	        // Handle the exception as appropriate
-	    }
 	}
 
 }

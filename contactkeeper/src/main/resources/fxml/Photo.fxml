@@ -32,17 +32,17 @@
                   </Label>
                </top>
                <center>
-                  <Pane prefHeight="355.0" prefWidth="419.0" BorderPane.alignment="CENTER">
-                     <children>
-                        <ImageView fx:id="photoView" fitHeight="347.0" fitWidth="407.0" layoutX="60.0">
-                           <image>
-                              <Image url="@../images/50%20Proud%20Dog%20Mommies%20With%20Their%20Puppies%20(New%20Pics).jpeg" />
-                           </image>
-                        </ImageView>
-                     </children>
+                  <Pane prefHeight="320.0" prefWidth="465.0" BorderPane.alignment="CENTER">
                      <BorderPane.margin>
                         <Insets bottom="10.0" top="30.0" />
                      </BorderPane.margin>
+                     <children>
+                        <ImageView fx:id="imageView" fitHeight="346.0" fitWidth="415.0" layoutX="55.0">
+                           <image>
+                              <Image url="@../images/pngfind.com-person-symbol-png-6181708.png" />
+                           </image>
+                        </ImageView>
+                     </children>
                   </Pane>
                </center>
                <bottom>

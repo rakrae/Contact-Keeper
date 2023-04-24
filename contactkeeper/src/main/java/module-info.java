@@ -11,6 +11,7 @@ module cKmodule {
 	requires org.hibernate.orm.core;
 	requires java.base;
 	requires jbcrypt;
+	requires java.desktop;
 
 	opens controller to javafx.fxml;
 	opens application to javafx.graphics, javafx.fxml;

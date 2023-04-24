@@ -1,13 +1,10 @@
 package repository;
 
-
 import java.util.List;
-
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
-
 import model.Photo;
 
 public class PhotoRepositoryJPA extends GenericRepository<Photo, Long> implements PhotoRepository {

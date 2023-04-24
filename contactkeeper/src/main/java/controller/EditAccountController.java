@@ -9,6 +9,7 @@ import common.BaseController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -36,7 +37,7 @@ public class EditAccountController extends BaseController {
     private TextField firstNameTextField;
 
     @FXML
-    private TextField genderTextField;
+    private ChoiceBox<String> genderChoiceBox;
 
     @FXML
     private TextField lastNameTextField;
@@ -65,7 +66,7 @@ public class EditAccountController extends BaseController {
 		loggedInAccount.setFirstName(firstNameTextField.getText());
 		loggedInAccount.setLastName(lastNameTextField.getText());
 		loggedInAccount.setAge(Integer.parseInt(ageTextField.getText()));
-		loggedInAccount.setGender(genderTextField.getText());
+		loggedInAccount.setGender(genderChoiceBox.getSelectionModel().getSelectedItem());
 
 		String oldPassword = oldPasswordTextField.getText();
 		String newPassword = newPasswordTextField.getText();
@@ -115,13 +116,14 @@ public class EditAccountController extends BaseController {
         assert cancel != null : "fx:id=\"cancel\" was not injected: check your FXML file 'EditAccount.fxml'.";
         assert errorLabelMessages != null : "fx:id=\"errorLabelMessages\" was not injected: check your FXML file 'EditAccount.fxml'.";
         assert firstNameTextField != null : "fx:id=\"firstNameTextField\" was not injected: check your FXML file 'EditAccount.fxml'.";
-        assert genderTextField != null : "fx:id=\"genderTextField\" was not injected: check your FXML file 'EditAccount.fxml'.";
+        assert genderChoiceBox != null : "fx:id=\"genderChoiceBox\" was not injected: check your FXML file 'EditAccount.fxml'.";
         assert lastNameTextField != null : "fx:id=\"lastNameTextField\" was not injected: check your FXML file 'EditAccount.fxml'.";
         assert newPasswordTextField != null : "fx:id=\"newPasswordTextField\" was not injected: check your FXML file 'EditAccount.fxml'.";
         assert oldPasswordTextField != null : "fx:id=\"oldPasswordTextField\" was not injected: check your FXML file 'EditAccount.fxml'.";
         assert reEnterPasswordTextField != null : "fx:id=\"reEnterPasswordTextField\" was not injected: check your FXML file 'EditAccount.fxml'.";
         assert saveChanges != null : "fx:id=\"saveChanges\" was not injected: check your FXML file 'EditAccount.fxml'.";
-
+        
+        genderChoiceBox.getItems().addAll("Male", "Female");
         
      // Initialize the loggedInAccount fields.
      		Account loggedInAccount = getLoggedInAccount();
@@ -130,8 +132,13 @@ public class EditAccountController extends BaseController {
      		firstNameTextField.setText(loggedInAccount.getFirstName());
      		lastNameTextField.setText(loggedInAccount.getLastName());
      		ageTextField.setText(Integer.toString(loggedInAccount.getAge()));
-     		genderTextField.setText(loggedInAccount.getGender());
 
+     		
+     		String selectedGender = loggedInAccount.getGender();
+     		if(selectedGender != null) {
+     			genderChoiceBox.setValue(selectedGender);
+     		}
+     		
      		// clear the password fields
      		oldPasswordTextField.setText("");
      		newPasswordTextField.setText("");
