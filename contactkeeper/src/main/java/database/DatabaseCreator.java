@@ -3,6 +3,8 @@ package database;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 
+import org.mindrot.jbcrypt.BCrypt;
+
 import application.ApplicationContext;
 import model.Account;
 import model.Contact;
@@ -14,10 +16,10 @@ public class DatabaseCreator {
 		EntityManager em = PersistenceManager.getEntityManagerFactory().createEntityManager();
 		EntityTransaction et = em.getTransaction();
 
-		String accountName = "Rakrae";		
+		String accountName = "kratos";		
 
 		if (!ApplicationContext.getAccountRepository().findByUserName(accountName).isPresent()) {
-			Account ac = new Account(accountName, "123", "Adi Andrei", "Fin", "M", 29);
+			Account ac = new Account(accountName, BCrypt.hashpw("testbB?9", BCrypt.gensalt()), "Adi Andrei", "Fin", "M", 29);
 			
 			for (int i = 1; i <= 25; i++) {
                 Contact ct = new Contact(

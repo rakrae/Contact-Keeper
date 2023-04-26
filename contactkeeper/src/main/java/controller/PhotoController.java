@@ -84,7 +84,7 @@ public class PhotoController extends BaseController {
      * Adds a photo only if the photo object is null
      * otherwise the user is asked to update the current one
      */
-    public void addPhoto() {
+    private void addPhoto() {
     	if(photo != null ) {
         	Alert alert = new Alert(Alert.AlertType.WARNING);
         	alert.setTitle("Warning");
