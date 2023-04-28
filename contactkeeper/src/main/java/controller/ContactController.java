@@ -17,9 +17,11 @@ import application.ApplicationContext;
 import common.BaseController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 import model.Contact;
 import model.Photo;
@@ -169,7 +171,14 @@ public class ContactController extends BaseController {
 
 	public void updateComment() {
 		
-		Contact contact = ApplicationContext.getSelectedContact();
+		if(commentTextField.getText().isEmpty()&& commentLabel.getText().isEmpty()) {
+			
+		Alert alert = new Alert(AlertType.WARNING);
+		alert.setTitle("Warning");
+		alert.setHeaderText(null);
+		alert.setContentText("Write a comment to add");
+		alert.showAndWait();
+		} else { Contact contact = ApplicationContext.getSelectedContact();
 		if(!commentTextField.getText().isEmpty()) {
 			contact.setComment(commentTextField.getText());
 			commentLabel.setText(commentTextField.getText());
@@ -179,11 +188,19 @@ public class ContactController extends BaseController {
 			commentTextField.setText("");
 		} else {
 			commentTextField.setText("");
+			}
 		}
 	}
 	
 	public void deleteComment() {
 		
+		if(commentLabel.getText().isEmpty()) {
+			Alert alert = new Alert(Alert.AlertType.WARNING);
+			alert.setTitle("Warning");
+			alert.setHeaderText(null);
+			alert.setContentText("Comment is empty!");
+			alert.showAndWait();
+		} else {
 		Contact contact = ApplicationContext.getSelectedContact();
 		if(!commentLabel.getText().isEmpty()) {
 			contact.setComment("");
@@ -194,6 +211,7 @@ public class ContactController extends BaseController {
 			commentTextField.setText("");
 		} else {
 			commentTextField.setText("");
+			}
 		}
 	}
 
