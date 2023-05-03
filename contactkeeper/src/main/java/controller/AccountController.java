@@ -70,6 +70,7 @@ public class AccountController extends BaseController {
 
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == ButtonType.OK) {
+        System.out.println("Account deleted");
     	accountRepository.delete(getLoggedInAccount());
     	navigateTo(PERSISTANCE_NAME_LOGIN, (Stage) deleteAccount.getScene().getWindow());
         }

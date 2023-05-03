@@ -92,6 +92,8 @@ public class EditAccountController extends BaseController {
 
 		accountRepository.update(loggedInAccount);
 		navigateTo(PERSISTANCE_NAME_ACCOUNT, (Stage) saveChanges.getScene().getWindow());
+		
+		System.out.println("Changes saved");
 	}
 
     // checks the validity of the password with the one from database hashed

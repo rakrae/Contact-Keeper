@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/Contact-Keeper.iml" filepath="$PROJECT_DIR$/Contact-Keeper.iml" />
+      <module fileurl="file://$PROJECT_DIR$/contactkeeper/contactkeeper/contactkeeper.iml" filepath="$PROJECT_DIR$/contactkeeper/contactkeeper/contactkeeper.iml" />
+      <module fileurl="file://$PROJECT_DIR$/contactkeeper/src/contactkeeper1.iml" filepath="$PROJECT_DIR$/contactkeeper/src/contactkeeper1.iml" />
+    </modules>
+  </component>
+</project>

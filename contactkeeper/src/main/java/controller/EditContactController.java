@@ -79,6 +79,7 @@ public class EditContactController extends BaseController {
         selectedContact.setPhoneNumber(phoneNumberTextField.getText());
         contactRepository.update(selectedContact);
         
+        System.out.println("Contact edited");
     	navigateTo(PERSISTANCE_NAME_CONTACTS, (Stage) saveChanges.getScene().getWindow());
     }
 

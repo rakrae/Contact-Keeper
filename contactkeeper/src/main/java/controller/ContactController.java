@@ -1,18 +1,7 @@
 package controller;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.io.FileOutputStream;
 import application.ApplicationContext;
 import common.BaseController;
 import javafx.event.ActionEvent;
@@ -24,7 +13,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 import model.Contact;
-import model.Photo;
 
 public class ContactController extends BaseController {
 	
@@ -171,13 +159,25 @@ public class ContactController extends BaseController {
 
 	public void updateComment() {
 		
+		if(!commentLabel.getText().isEmpty()){
+			System.out.println("Delete first the comment");
+			
+			Alert alert = new Alert(AlertType.CONFIRMATION);
+			alert.setTitle("Warning");
+			alert.setHeaderText(null);
+			alert.setContentText("Delete first the current comment");
+			alert.showAndWait();
+		}
+		
 		if(commentTextField.getText().isEmpty()&& commentLabel.getText().isEmpty()) {
+		System.out.println("Empty comment!");
 			
 		Alert alert = new Alert(AlertType.WARNING);
 		alert.setTitle("Warning");
 		alert.setHeaderText(null);
 		alert.setContentText("Write a comment to add");
 		alert.showAndWait();
+		
 		} else { Contact contact = ApplicationContext.getSelectedContact();
 		if(!commentTextField.getText().isEmpty()) {
 			contact.setComment(commentTextField.getText());
@@ -185,7 +185,9 @@ public class ContactController extends BaseController {
 			
 			contactRepository.update(contact);
 			
+			System.out.println("Comment added");
 			commentTextField.setText("");
+			
 		} else {
 			commentTextField.setText("");
 			}
@@ -195,6 +197,8 @@ public class ContactController extends BaseController {
 	public void deleteComment() {
 		
 		if(commentLabel.getText().isEmpty()) {
+			System.out.println("Comment is empty");
+			
 			Alert alert = new Alert(Alert.AlertType.WARNING);
 			alert.setTitle("Warning");
 			alert.setHeaderText(null);
@@ -209,6 +213,8 @@ public class ContactController extends BaseController {
 			contactRepository.update(contact);
 			
 			commentTextField.setText("");
+			
+			System.out.println("Comment deleted");
 		} else {
 			commentTextField.setText("");
 			}

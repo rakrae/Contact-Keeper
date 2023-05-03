@@ -71,6 +71,8 @@ public class NewAccountController extends BaseController {
          String ageText = ageTextField.getText();
 
          validateAndCreateAccount(userName, firstName, lastName, password, reenterPassword, gender, ageText);
+         
+         System.out.println("Account added");
     }
     
 

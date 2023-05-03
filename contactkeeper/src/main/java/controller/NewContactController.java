@@ -87,6 +87,8 @@ public class NewContactController extends BaseController {
 
         newContact.setAccount(getLoggedInAccount());
         contactRepository.save(newContact);
+        
+        System.out.println("New contact created");
     }
     
     private void navigateToContacts() {

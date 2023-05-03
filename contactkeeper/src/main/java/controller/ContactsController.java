@@ -3,7 +3,6 @@ package controller;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
-
 import javafx.scene.control.Alert;
 import application.ApplicationContext;
 import common.BaseController;
@@ -21,11 +20,15 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseButton;
 import javafx.stage.Stage;
+import java.util.ArrayList;
+import java.util.Arrays;
+
 import model.Contact;
 
 public class ContactsController extends BaseController {
 	
 	private ObservableList<Contact> contactsData;
+	private List<String> filterList = new ArrayList<>();
 
     @FXML
     private ResourceBundle resources;
@@ -80,7 +83,13 @@ public class ContactsController extends BaseController {
 
     @FXML
     void handleSearchButtonPressed(ActionEvent event) {
-    	filterContacts();
+    	   filterList.clear();
+    	    String query = searchContactTextField.getText().toLowerCase();
+    	    if (!query.isEmpty()) {
+    	        filterList.addAll(Arrays.asList(query.split(" ")));
+    	    }
+    	    filterContacts();
+    	    setDeleteButtonCellFactory();
     }
 
     @FXML
@@ -163,21 +172,17 @@ public class ContactsController extends BaseController {
 	}
 
 	private void filterContacts() {
-	    String query = searchContactTextField.getText();
+	    String query = searchContactTextField.getText().toLowerCase();
 	    if (query == null || query.isEmpty()) {
 	        contactsView.setItems(contactsData);
 	    } else {
-	        ObservableList<Contact> filteredData = FXCollections.observableArrayList();
-	        for (Contact contact : contactsData) {
-	            if (contact.getFirstName().toLowerCase().contains(query.toLowerCase())
-	                    || contact.getLastName().toLowerCase().contains(query.toLowerCase())
-	                    || String.valueOf(contact.getPhoneNumber()).contains(query)) {
-	                filteredData.add(contact);
-	            }
-	        }
-	        contactsView.setItems(filteredData);
+	        List<Contact> filteredList = contactsData.filtered(contact ->
+	                filterList.contains(contact.getFirstName().toLowerCase()) ||
+	                filterList.contains(contact.getLastName().toLowerCase()) ||
+	                filterList.contains(contact.getPhoneNumber().toLowerCase())
+	        );
+	        contactsView.setItems(FXCollections.observableArrayList(filteredList));
 	    }
 	}
-    
 
 }
