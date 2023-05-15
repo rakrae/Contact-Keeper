@@ -6,6 +6,8 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -32,8 +34,10 @@ public class Account {
 	private String firstName;
 
 	private String lastName;
-
-	private String gender;
+	
+	@Enumerated(EnumType.STRING)
+	@Column(name = "gender")
+	private Gender gender;
 
 	private int age;
 
@@ -44,7 +48,7 @@ public class Account {
 		super();
 	}
 
-	public Account(String userName, String password, String firstName, String lastName, String gender, int age) {
+	public Account(String userName, String password, String firstName, String lastName, Gender gender, int age) {
 		super();
 		this.userName = userName;
 		this.password = password;
@@ -95,11 +99,11 @@ public class Account {
 		this.lastName = lastName;
 	}
 
-	public String getGender() {
+	public Gender getGender() {
 		return gender;
 	}
 
-	public void setGender(String gender) {
+	public void setGender(Gender gender) {
 		this.gender = gender;
 	}
 

@@ -1,7 +1,11 @@
 package controller;
 
 import java.net.URL;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ResourceBundle;
+import java.util.regex.Pattern;
 
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -13,6 +17,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import model.Contact;
+import model.Gender;
 
 public class NewContactController extends BaseController {
 
@@ -41,7 +46,7 @@ public class NewContactController extends BaseController {
     private TextField firstNameTextField;
     
     @FXML
-    private ChoiceBox<String> genderChoiceBox;
+    private ChoiceBox<Gender> genderChoiceBox;
 
     @FXML
     private TextField instagramTextField;
@@ -69,17 +74,71 @@ public class NewContactController extends BaseController {
     	navigateToContacts();
     }
     
+    private static final String PHONE_NUMBER_REGEX = "^\\d{3}-\\d{3}-\\d{4}$"; // e.g. 123-456-7890
+    private static final String EMAIL_REGEX = "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$"; // e.g. example@example.com
+
+    private boolean validatePhoneNumber(String phoneNumber) {
+        if (phoneNumber.isEmpty()) {
+            return true;
+        }
+        return Pattern.matches(PHONE_NUMBER_REGEX, phoneNumber);
+    }
+
+    private boolean validateEmail(String email) {
+        if (email.isEmpty()) {
+            return true;
+        }
+        return Pattern.matches(EMAIL_REGEX, email);
+    }
+
+    
     private void createAndSaveNewContact() {
+    	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    	LocalDate birthday = null;
+    	
+    	String birthdayString = birthdayTextField.getText();
+        if (!birthdayString.isEmpty()) {
+            try {
+                birthday = LocalDate.parse(birthdayString, formatter);
+            } catch (DateTimeParseException e) {
+                Alert alert = new Alert(AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setHeaderText(null);
+                alert.setContentText("Please enter a valid date for the birthday (format: dd/MM/yyyy)");
+                alert.showAndWait();
+                return;
+            }
+        }
+
+        String phoneNumber = phoneNumberTextField.getText();
+        if (!validatePhoneNumber(phoneNumber)) {
+            Alert alert = new Alert(AlertType.ERROR);
+            alert.setTitle("Invalid Phone Number");
+            alert.setHeaderText(null);
+            alert.setContentText("Please enter a valid phone number (e.g. 123-456-7890)");
+            alert.showAndWait();
+            return;
+        }
+
+        String email = emailTextField.getText();
+        if (!validateEmail(email)) {
+            Alert alert = new Alert(AlertType.ERROR);
+            alert.setTitle("Invalid Email Address");
+            alert.setHeaderText(null);
+            alert.setContentText("Please enter a valid email address (e.g. example@example.com)");
+            alert.showAndWait();
+            return;
+        }
     	
     	// Comment set initially to ""
         Contact newContact = new Contact(
                 firstNameTextField.getText(),
                 lastNameTextField.getText(),
                 genderChoiceBox.getSelectionModel().getSelectedItem(),
-                birthdayTextField.getText(),
+                birthday, //LocalDate
                 addressTextField.getText(),
-                phoneNumberTextField.getText(),
-                emailTextField.getText(),
+                phoneNumber, // REGEX
+                email,// REGEX 
                 facebookTextField.getText(),
                 linkedInTextField.getText(),
                 instagramTextField.getText(),
@@ -111,7 +170,7 @@ public class NewContactController extends BaseController {
         assert phoneNumberTextField != null : "fx:id=\"phoneNumberTextField\" was not injected: check your FXML file 'NewContact.fxml'.";
         assert saveChanges != null : "fx:id=\"saveChanges\" was not injected: check your FXML file 'NewContact.fxml'.";
     
-        genderChoiceBox.getItems().addAll("Male", "Female");
+        genderChoiceBox.getItems().addAll(Gender.MALE, Gender.FEMALE);
     }
 
 }

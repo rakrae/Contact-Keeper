@@ -1,8 +1,12 @@
 package model;
 
+import java.time.LocalDate;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -29,12 +33,14 @@ public class Contact {
 	@Column(name = "last_name")
 	private String lastName;
 	
-	private String gender;
+	@Enumerated(EnumType.STRING)
+	@Column(name = "gender")
+	private Gender gender;
 
-	private String birthday;
+	private LocalDate birthday; //LocalDate
 	
 	private String address;
-
+	
 	private String phoneNumber;
 
 	private String email;
@@ -58,7 +64,7 @@ public class Contact {
 	public Contact() {
 	}
 
-	public Contact(String firstName, String lastName,String gender, String birthday, String address,
+	public Contact(String firstName, String lastName,Gender gender, LocalDate birthday, String address,
 			String phoneNumber, String email, String facebook, String linkedIn, String instagram, String comment) {
 		super();
 		this.firstName = firstName;
@@ -98,19 +104,19 @@ public class Contact {
 		this.lastName = lastName;
 	}
 
-	public String getGender() {
+	public Gender getGender() {
 		return gender;
 	}
 
-	public void setGender(String gender) {
+	public void setGender(Gender gender) {
 		this.gender = gender;
 	}
 
-	public String getBirthday() {
+	public LocalDate getBirthday() {
 		return birthday;
 	}
 
-	public void setBirthday(String birthday) {
+	public void setBirthday(LocalDate birthday) {
 		this.birthday = birthday;
 	}
 

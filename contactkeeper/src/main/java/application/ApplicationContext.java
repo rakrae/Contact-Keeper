@@ -2,6 +2,7 @@ package application;
 
 import model.Account;
 import model.Contact;
+import model.Model;
 import model.Photo;
 import repository.AccountRepository;
 import repository.AccountRepositoryJPA;
@@ -24,10 +25,13 @@ public class ApplicationContext {
 
     private static Photo selectedPhoto;
     
+    private static Model selectedModel;
+    
     private ApplicationContext() {
         accountRepository = new AccountRepositoryJPA();
         contactRepository = new ContactRepositoryJPA();
         photoRepository = new PhotoRepositoryJPA();
+        selectedModel = new Model();
     }
 
     public static ApplicationContext getInstance() {
@@ -71,6 +75,14 @@ public class ApplicationContext {
 
 	public static void setSelectedPhoto(Photo selectedPhoto) {
 		ApplicationContext.selectedPhoto = selectedPhoto;
+	}
+
+	public static Model getSelectedModel() {
+		return selectedModel;
+	}
+
+	public static void setSelectedModel(Model selectedModel) {
+		ApplicationContext.selectedModel = selectedModel;
 	}
     
 }

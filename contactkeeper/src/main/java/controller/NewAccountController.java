@@ -16,6 +16,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import model.Account;
+import model.Gender;
 
 public class NewAccountController extends BaseController {
 
@@ -41,7 +42,7 @@ public class NewAccountController extends BaseController {
     private TextField firstNameTextField;
 
     @FXML
-    private ChoiceBox<String> genderChoiceBox;
+    private ChoiceBox<Gender> genderChoiceBox;
 
     @FXML
     private TextField lastNameTextField;
@@ -67,7 +68,7 @@ public class NewAccountController extends BaseController {
          String lastName = lastNameTextField.getText();
          String password = passwordTextField.getText();
          String reenterPassword = reenterPasswordTextField.getText();
-         String gender = genderChoiceBox.getSelectionModel().getSelectedItem();
+         Gender gender = genderChoiceBox.getSelectionModel().getSelectedItem();
          String ageText = ageTextField.getText();
 
          validateAndCreateAccount(userName, firstName, lastName, password, reenterPassword, gender, ageText);
@@ -77,7 +78,7 @@ public class NewAccountController extends BaseController {
     
 
     private void validateAndCreateAccount(String userName, String firstName, String lastName,
-                                          String password, String reenterPassword, String gender, String ageText) {
+                                          String password, String reenterPassword, Gender gender, String ageText) {
         errorMessageLabel.setText("");
 
         if (userName.isEmpty()) {
@@ -110,7 +111,7 @@ public class NewAccountController extends BaseController {
             return;
         }
 
-        if (gender.isEmpty()) {
+        if (gender == null) {
             errorMessageLabel.setText("Gender cannot be empty.");
             return;
         }
@@ -133,7 +134,7 @@ public class NewAccountController extends BaseController {
         createNewAccount(userName, firstName, lastName, password, gender, ageText);
     }
 
-    private void createNewAccount(String userName, String firstName, String lastName, String password, String gender, String ageText) {
+    private void createNewAccount(String userName, String firstName, String lastName, String password, Gender gender, String ageText) {
         Optional<Account> existingAccount = accountRepository.findByUserName(userName);
         if (existingAccount.isPresent()) {
             errorMessageLabel.setText("An account with this username already exists.");
@@ -174,7 +175,7 @@ public class NewAccountController extends BaseController {
         assert passwordTextField != null : "fx:id=\"passwordTextField\" was not injected: check your FXML file 'NewAccount.fxml'.";
         assert reenterPasswordTextField != null : "fx:id=\"reenterPasswordTextField\" was not injected: check your FXML file 'NewAccount.fxml'.";
         
-        genderChoiceBox.getItems().addAll("Male", "Female");
+        genderChoiceBox.getItems().addAll(Gender.MALE, Gender.FEMALE);
     }
 
 }

@@ -15,6 +15,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import model.Account;
+import model.Gender;
 
 public class EditAccountController extends BaseController {
 
@@ -37,7 +38,7 @@ public class EditAccountController extends BaseController {
     private TextField firstNameTextField;
 
     @FXML
-    private ChoiceBox<String> genderChoiceBox;
+    private ChoiceBox<Gender> genderChoiceBox;
 
     @FXML
     private TextField lastNameTextField;
@@ -125,7 +126,7 @@ public class EditAccountController extends BaseController {
         assert reEnterPasswordTextField != null : "fx:id=\"reEnterPasswordTextField\" was not injected: check your FXML file 'EditAccount.fxml'.";
         assert saveChanges != null : "fx:id=\"saveChanges\" was not injected: check your FXML file 'EditAccount.fxml'.";
         
-        genderChoiceBox.getItems().addAll("Male", "Female");
+        genderChoiceBox.getItems().addAll(Gender.MALE, Gender.FEMALE);
         
      // Initialize the loggedInAccount fields.
      		Account loggedInAccount = getLoggedInAccount();
@@ -135,11 +136,7 @@ public class EditAccountController extends BaseController {
      		lastNameTextField.setText(loggedInAccount.getLastName());
      		ageTextField.setText(Integer.toString(loggedInAccount.getAge()));
 
-     		
-     		String selectedGender = loggedInAccount.getGender();
-     		if(selectedGender != null) {
-     			genderChoiceBox.setValue(selectedGender);
-     		}
+     		genderChoiceBox.setValue(loggedInAccount.getGender());
      		
      		// clear the password fields
      		oldPasswordTextField.setText("");

@@ -92,7 +92,18 @@ public class LoginController extends BaseController {
           assert newAccount != null : "fx:id=\"newAccount\" was not injected: check your FXML file 'Login.fxml'.";
           assert passwordTextField != null : "fx:id=\"passwordTextField\" was not injected: check your FXML file 'Login.fxml'.";
           assert userNameTextField != null : "fx:id=\"userNameTextField\" was not injected: check your FXML file 'Login.fxml'.";
+          
+          // Allows the login also with Enter if the credentials are correct
+          passwordTextField.setOnAction(event -> {
+              String userName = userNameTextField.getText();
+              String password = passwordTextField.getText();
 
+              if (validateLoginInput(userName, password)) {
+                  attemptLogin(userName, password);
+              } else {
+                  invalidCredentialsLabel.setText("Username and password must not be empty.");
+              }
+          });
     }
 
 }

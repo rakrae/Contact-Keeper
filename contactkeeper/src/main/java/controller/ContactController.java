@@ -1,6 +1,7 @@
 package controller;
 
 import java.net.URL;
+import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 import application.ApplicationContext;
 import common.BaseController;
@@ -128,8 +129,14 @@ public class ContactController extends BaseController {
 		if (selectedContact != null) {
 			firstNameTextField.setText(selectedContact.getFirstName());
 			lastNameTextField.setText(selectedContact.getLastName());
-			genderTextField.setText(selectedContact.getGender());
-			birthdayTextField.setText(selectedContact.getBirthday());			
+			genderTextField.setText(selectedContact.getGender().toString());
+			 if (selectedContact.getBirthday() != null) {
+		            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		            String birthdayString = selectedContact.getBirthday().format(formatter);
+		            birthdayTextField.setText(birthdayString);
+		        } else {
+		            birthdayTextField.setText("");
+		        }	
 			phoneNumberTextField.setText(String.valueOf(selectedContact.getPhoneNumber()));
 			emailTextField.setText(selectedContact.getEmail());
 			addressTextField.setText(selectedContact.getAddress());
@@ -137,7 +144,9 @@ public class ContactController extends BaseController {
 			instagramTextField.setText(selectedContact.getInstagram());
 			linkedInTextField.setText(selectedContact.getLinkedIn());
 			commentLabel.setText(selectedContact.getComment());
-		}
+		} else {
+	        birthdayTextField.setText("");
+	    }
 		
 	}
 	
@@ -145,8 +154,10 @@ public class ContactController extends BaseController {
 		if (contact != null) {
 			firstNameTextField.setText(contact.getFirstName());
 			lastNameTextField.setText(contact.getLastName());
-			genderTextField.setText(contact.getGender());;
-			birthdayTextField.setText(contact.getBirthday());
+			genderTextField.setText(contact.getGender().toString());;
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+	        String birthdayString = selectedContact.getBirthday().format(formatter);
+	        birthdayTextField.setText(birthdayString);
 			phoneNumberTextField.setText(String.valueOf(contact.getPhoneNumber()));
 			emailTextField.setText(contact.getEmail());
 			addressTextField.setText(contact.getAddress());
